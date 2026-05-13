@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1251936088271227990}
   - component: {fileID: 3025242462048927514}
   - component: {fileID: 5387414225558294787}
-  - component: {fileID: 9135576529941743427}
-  m_Layer: 0
+  - component: {fileID: 2397125486143926655}
+  m_Layer: 7
   m_Name: RangedEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +156,7 @@ MonoBehaviour:
   stats: {fileID: 11400000, guid: 6aa792c3480fe884aa17bc80def78590, type: 2}
   projectilePrefab: {fileID: 1588638137599452147, guid: 861c618dd477f994fa0cdf54ad155cc6, type: 3}
   firePoint: {fileID: 4075246498463830422}
---- !u!50 &9135576529941743427
+--- !u!50 &2397125486143926655
 Rigidbody2D:
   serializedVersion: 5
   m_ObjectHideFlags: 0
