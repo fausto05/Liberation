@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7157306476973814793}
   - component: {fileID: 7878172577405320409}
   - component: {fileID: -2452805055359277959}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0

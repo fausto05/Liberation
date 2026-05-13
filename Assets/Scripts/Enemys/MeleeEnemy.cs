@@ -19,7 +19,8 @@ public class MeleeEnemy : EnemyBase
 
     private void MoveToPlayer()
     {
-        Vector2 direction = (player.position - transform.position).normalized;
+        Vector2 direction =
+            (player.position - transform.position).normalized;
 
         rb.linearVelocity = direction * stats.moveSpeed;
     }
@@ -32,7 +33,13 @@ public class MeleeEnemy : EnemyBase
         {
             Debug.Log("Melee Attack");
 
-            
+            IDamageable damageable =
+                player.GetComponent<IDamageable>();
+
+            if (damageable != null)
+            {
+                damageable.TakeDamage(stats.damage);
+            }
 
             lastAttackTime = Time.time;
         }

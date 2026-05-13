@@ -42,6 +42,12 @@ public class RangedEnemy : EnemyBase
 
     private void Shoot()
     {
+        GameObject projectile =
         Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
+
+        Vector2 direction =
+            (player.position - firePoint.position).normalized;
+
+        projectile.GetComponent<Projectile>().Initialize(direction);
     }
 }

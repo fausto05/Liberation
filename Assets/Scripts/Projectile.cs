@@ -5,33 +5,29 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private int damage;
 
-    private Transform player;
+    private Vector2 direction;
 
-    private void Start()
+    public void Initialize(Vector2 dir)
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        direction = dir.normalized;
     }
 
     private void Update()
     {
-        if (player == null) return;
-
-        transform.position = Vector2.MoveTowards(
-            transform.position,
-            player.position,
-            speed * Time.deltaTime
-        );
+        transform.position +=
+            (Vector3)(direction * speed * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        IDamageable damageable = other.GetComponent<IDamageable>();
+        IDamageable damageable =
+            other.GetComponent<IDamageable>();
 
         if (damageable != null)
         {
             damageable.TakeDamage(damage);
-        }
 
-        Destroy(gameObject);
+            Destroy(gameObject);
+        }
     }
 }
