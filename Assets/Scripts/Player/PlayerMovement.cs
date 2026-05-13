@@ -5,9 +5,11 @@ public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public Joystick joystick;
+    public Vector2 moveInput;
 
     private Rigidbody2D rb;
     private Vector2 movement;
+
 
     private void Awake()
     {
@@ -35,5 +37,10 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         rb.linearVelocity = movement * moveSpeed;
+    }
+
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        moveInput = context.ReadValue<Vector2>();
     }
 }
