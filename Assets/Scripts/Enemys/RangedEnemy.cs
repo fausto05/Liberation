@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class RangedEnemy : EnemyBase
 {
-    [Header("Projectile")]
-    [SerializeField] private GameObject projectilePrefab;
+    
+    
     [SerializeField] private Transform firePoint;
 
     protected override void HandleBehavior()
@@ -42,12 +42,7 @@ public class RangedEnemy : EnemyBase
 
     private void Shoot()
     {
-        GameObject projectile =
-        Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
-
-        Vector2 direction =
-            (player.position - firePoint.position).normalized;
-
-        projectile.GetComponent<Projectile>().Initialize(direction);
+        Vector2 direction = (player.position - firePoint.position).normalized;
+        ProjectilePool.Instance.Get(firePoint.position, direction);
     }
 }
