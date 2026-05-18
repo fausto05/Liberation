@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2397125486143926655}
   - component: {fileID: -1373186694721953635}
   m_Layer: 7
-  m_Name: RangedEnemy
+  m_Name: HeavyEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -87,7 +87,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.6886792, g: 0.09420614, b: 0.09420614, a: 1}
+  m_Color: {r: 0.6226415, g: 0.108668566, b: 0.5539887, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1d438c242e637d4790dfd48f7956c3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RangedEnemy
-  stats: {fileID: 11400000, guid: 6aa792c3480fe884aa17bc80def78590, type: 2}
+  stats: {fileID: 11400000, guid: 7bdcf6902725b9f4499a38f17520b83e, type: 2}
 --- !u!50 &2397125486143926655
 Rigidbody2D:
   serializedVersion: 5
@@ -194,7 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4697fd9386d5346438ebd85a5c898b33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RangedAttack
-  stats: {fileID: 11400000, guid: 6aa792c3480fe884aa17bc80def78590, type: 2}
+  stats: {fileID: 11400000, guid: 7bdcf6902725b9f4499a38f17520b83e, type: 2}
   firePoint: {fileID: 4075246498463830422}
 --- !u!1 &7601392273958662547
 GameObject:

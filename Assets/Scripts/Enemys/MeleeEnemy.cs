@@ -3,6 +3,15 @@ using UnityEngine;
 
 public class MeleeEnemy : EnemyBase
 {
+    private MeleeAttack attack;
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        attack = GetComponent<MeleeAttack>();
+    }
+
     protected override void HandleBehavior()
     {
         float distance = DistanceToPlayer();
@@ -13,7 +22,8 @@ public class MeleeEnemy : EnemyBase
         }
         else
         {
-            Attack();
+            rb.linearVelocity = Vector2.zero;
+            attack.TryAttack();
         }
     }
 
@@ -23,25 +33,5 @@ public class MeleeEnemy : EnemyBase
             (player.position - transform.position).normalized;
 
         rb.linearVelocity = direction * stats.moveSpeed;
-    }
-
-    private void Attack()
-    {
-        rb.linearVelocity = Vector2.zero;
-
-        if (Time.time >= lastAttackTime + stats.attackCooldown)
-        {
-            Debug.Log("Melee Attack");
-
-            IDamageable damageable =
-                player.GetComponent<IDamageable>();
-
-            if (damageable != null)
-            {
-                damageable.TakeDamage(stats.damage);
-            }
-
-            lastAttackTime = Time.time;
-        }
     }
 }

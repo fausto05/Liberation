@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5432444720476981047}
   - component: {fileID: 9087011586540506129}
   - component: {fileID: 6109321276674131303}
+  - component: {fileID: -7512254716125508052}
   m_Layer: 7
   m_Name: MeleeEnemy
   m_TagString: Untagged
@@ -180,3 +181,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-7512254716125508052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1042476380505274971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42a330b972e6161469122e3e399ec827, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MeleeAttack
+  stats: {fileID: 11400000, guid: 68dd2c76e5327b74fbda66e12bf878d6, type: 2}
