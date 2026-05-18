@@ -2,9 +2,14 @@ using UnityEngine;
 
 public class RangedEnemy : EnemyBase
 {
-    
-    
-    [SerializeField] private Transform firePoint;
+    private RangedAttack attack;
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        attack = GetComponent<RangedAttack>();
+    }
 
     protected override void HandleBehavior()
     {
@@ -16,7 +21,8 @@ public class RangedEnemy : EnemyBase
         }
         else
         {
-            Attack();
+            rb.linearVelocity = Vector2.zero;
+            attack.TryAttack();
         }
     }
 
@@ -27,22 +33,5 @@ public class RangedEnemy : EnemyBase
         rb.linearVelocity = direction * stats.moveSpeed;
     }
 
-    private void Attack()
-    {
-        rb.linearVelocity = Vector2.zero;
-        Debug.Log("ATTACKING");
 
-        if (Time.time >= lastAttackTime + stats.attackCooldown)
-        {
-            Shoot();
-
-            lastAttackTime = Time.time;
-        }
-    }
-
-    private void Shoot()
-    {
-        Vector2 direction = (player.position - firePoint.position).normalized;
-        ProjectilePool.Instance.Get(firePoint.position, direction);
-    }
 }
