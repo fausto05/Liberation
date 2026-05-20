@@ -630,6 +630,7 @@ GameObject:
   - component: {fileID: 796238419}
   - component: {fileID: 796238418}
   - component: {fileID: 796238417}
+  - component: {fileID: 796238420}
   m_Layer: 0
   m_Name: CinemachineCamera
   m_TagString: Untagged
@@ -726,6 +727,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &796238420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 796238416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23148302874e85149b9b9221d322ba9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DynamicCameraOffset
+  playerRb: {fileID: 1437214487}
+  lookAheadAmount: 2
+  smoothSpeed: 5
 --- !u!1001 &927011324
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -852,8 +868,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4352a826e10e8142a96b2e587d3b321, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectilePool
-  prefab: {fileID: -2452805055359277959, guid: 861c618dd477f994fa0cdf54ad155cc6, type: 3}
-  initialSize: 20
+  entries: []
 --- !u!4 &1388094294
 Transform:
   m_ObjectHideFlags: 0
@@ -872,6 +887,11 @@ Transform:
 --- !u!4 &1437214486 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2112331239474622019, guid: e0d7c8b4416637d40aa96ed4ae142ea4, type: 3}
+  m_PrefabInstance: {fileID: 6425974849916484105}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &1437214487 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 3259626048581360908, guid: e0d7c8b4416637d40aa96ed4ae142ea4, type: 3}
   m_PrefabInstance: {fileID: 6425974849916484105}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1561113268
