@@ -181,7 +181,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &-1373186694721953635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,6 +196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RangedAttack
   stats: {fileID: 11400000, guid: 7bdcf6902725b9f4499a38f17520b83e, type: 2}
   firePoint: {fileID: 4075246498463830422}
+  projectilePrefab: {fileID: -2452805055359277959, guid: 9b452a9c0abb7ad4688525c2b5888338, type: 3}
 --- !u!1 &7601392273958662547
 GameObject:
   m_ObjectHideFlags: 0
