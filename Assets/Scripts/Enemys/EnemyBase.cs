@@ -11,6 +11,8 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable
 
     protected int currentHealth;
     protected float lastAttackTime;
+    public event System.Action OnDied;
+    private GameObject prefabKey;
 
     protected virtual void Awake()
     {
@@ -18,6 +20,10 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable
     }
 
     protected virtual void Start()
+    {
+        
+    }
+    public virtual void OnSpawn()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         currentHealth = stats.maxHealth;
@@ -41,10 +47,16 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable
             Die();
         }
     }
+    public void SetPrefabKey(GameObject key)
+    {
+        prefabKey = key;
+    }
 
     protected virtual void Die()
     {
-        Destroy(gameObject);
+        OnDied?.Invoke();
+        OnDied = null; 
+        EnemyPool.Instance.ReturnToPool(this, prefabKey);
     }
 
     protected float DistanceToPlayer()
