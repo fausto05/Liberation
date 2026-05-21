@@ -10,7 +10,8 @@ public class PlayerRangedAttack : MonoBehaviour
     [SerializeField] private int damage = 10;
 
     private PlayerMovement playerMovement;
-    private float fireTimer;
+
+    private float nextFireTime;
 
     private void Awake()
     {
@@ -19,23 +20,28 @@ public class PlayerRangedAttack : MonoBehaviour
 
     public void TryFire()
     {
-        fireTimer -= Time.deltaTime;
-        if (fireTimer > 0f) return;
+        if (Time.time < nextFireTime)
+            return;
 
-        fireTimer = Mathf.Max(fireRate, 0f); 
+        nextFireTime = Time.time + fireRate;
+
         Fire();
     }
 
     private void Fire()
     {
         Vector2 direction = GetAimDirection();
-        Projectile projectile = ProjectilePool.Instance.Get(projectilePrefab, firePoint.position, direction);
+
+        Projectile projectile =
+            ProjectilePool.Instance.Get(projectilePrefab, firePoint.position, direction);
+
         projectile.SetDamage(damage);
     }
 
     private Vector2 GetAimDirection()
     {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, autoAimRadius, enemyLayer);
+        Collider2D[] hits =
+            Physics2D.OverlapCircleAll(transform.position, autoAimRadius, enemyLayer);
 
         if (hits.Length == 0)
             return playerMovement.LastMoveDirection;
@@ -45,7 +51,9 @@ public class PlayerRangedAttack : MonoBehaviour
 
         foreach (Collider2D hit in hits)
         {
-            float dist = Vector2.Distance(transform.position, hit.transform.position);
+            float dist =
+                Vector2.Distance(transform.position, hit.transform.position);
+
             if (dist < minDist)
             {
                 minDist = dist;
@@ -54,16 +62,5 @@ public class PlayerRangedAttack : MonoBehaviour
         }
 
         return (closest.transform.position - firePoint.position).normalized;
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, autoAimRadius);
-    }
-
-    public void ResetTimer()
-    {
-        fireTimer = 0f;
     }
 }
