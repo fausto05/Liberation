@@ -200,7 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edbcb15c4cc215f46a8650194ec8b1af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  moveSpeed: 5
+  moveSpeed: 7
   joystick: {fileID: 0}
 --- !u!114 &-7110345497880831442
 MonoBehaviour:
@@ -292,7 +292,7 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
-  damage: 10
+  damage: 5
 --- !u!1 &3835594437105742189
 GameObject:
   m_ObjectHideFlags: 0

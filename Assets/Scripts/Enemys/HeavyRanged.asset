@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HeavyRanged
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
   moveSpeed: 3
-  maxHealth: 7
+  maxHealth: 20
   damage: 10
   attackRange: 10
   attackCooldown: 5
