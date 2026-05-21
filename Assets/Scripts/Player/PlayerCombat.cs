@@ -4,11 +4,14 @@ using UnityEngine.InputSystem;
 public class PlayerCombat : MonoBehaviour
 {
     private PlayerRangedAttack rangedAttack;
+    private PlayerMeleeAttack meleeAttack;
+
     private bool isFiring;
 
     private void Awake()
     {
         rangedAttack = GetComponent<PlayerRangedAttack>();
+        meleeAttack = GetComponent<PlayerMeleeAttack>();
     }
 
     private void Update()
@@ -26,5 +29,13 @@ public class PlayerCombat : MonoBehaviour
 
         if (context.canceled)
             isFiring = false;
+    }
+
+    public void OnMelee(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            meleeAttack.TryAttack();
+        }
     }
 }
