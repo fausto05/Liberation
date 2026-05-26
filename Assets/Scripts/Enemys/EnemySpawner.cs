@@ -14,12 +14,20 @@ public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private List<SpawnEntry> spawnEntries;
     [SerializeField] private List<Transform> spawnPoints;
+    [SerializeField] private bool startActive = false;
+    private bool isActive;
 
     private int spawnPointIndex = 0;
 
+    private void Start()
+    {
+        isActive = startActive;
+    }
     private void Update()
     {
-        foreach (SpawnEntry entry in spawnEntries)
+        if (!isActive)
+            return;
+            foreach (SpawnEntry entry in spawnEntries)
         {
             if (entry.activeCount >= entry.maxActive) continue;
 
@@ -29,6 +37,16 @@ public class EnemySpawner : MonoBehaviour
             entry.timer = entry.spawnInterval;
             SpawnEnemy(entry);
         }
+    }
+
+    public void ActivateSpawner()
+    {
+        isActive = true;
+    }
+
+    public void DeactivateSpawner()
+    {
+        isActive = false;
     }
 
     private void SpawnEnemy(SpawnEntry entry)
