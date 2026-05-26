@@ -61,4 +61,19 @@ public class PlayerMeleeAttack : MonoBehaviour
 
         Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
     }
+
+    public bool HasEnemyInRange()
+    {
+        Vector2 direction = playerMovement.LastMoveDirection.normalized;
+
+        attackPoint.localPosition = direction * 0.7f;
+
+        Collider2D hit = Physics2D.OverlapCircle(
+            attackPoint.position,
+            attackRadius,
+            enemyLayer
+        );
+
+        return hit != null;
+    }
 }

@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerCombat : MonoBehaviour
 {
+    [SerializeField] private LayerMask enemyLayer;
+
     private PlayerRangedAttack rangedAttack;
     private PlayerMeleeAttack meleeAttack;
     private PlayerDash playerDash;
@@ -20,25 +22,31 @@ public class PlayerCombat : MonoBehaviour
     {
         if (isFiring)
         {
+            SmartAttack();
+        }
+    }
+
+    private void SmartAttack()
+    {
+        if (meleeAttack.HasEnemyInRange())
+        {
+            Debug.Log("MELEE");
+            meleeAttack.TryAttack();
+        }
+        else
+        {
+            Debug.Log("RANGED");
             rangedAttack.TryFire();
         }
     }
 
-    public void OnFire(InputAction.CallbackContext context)
+    public void OnAttack(InputAction.CallbackContext context)
     {
         if (context.started)
             isFiring = true;
 
         if (context.canceled)
             isFiring = false;
-    }
-
-    public void OnMelee(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-            meleeAttack.TryAttack();
-        }
     }
 
     public void OnDash(InputAction.CallbackContext context)
