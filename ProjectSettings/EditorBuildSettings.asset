@@ -12,4 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MarianoNiveles.unity
     guid: 02caba866a24a9648a3fc5cccc677b60
   m_configObjects:
+    com.unity.adaptivePerformance.basic.provider_settings: {fileID: 11400000, guid: 829f496559af5ec41bf51ef03d30c780, type: 2}
+    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: a8585ec10f2b20f45859c2c02b3b20ef, type: 2}
+    com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 7f7561725ab2ee34087a89b9eb62e056, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

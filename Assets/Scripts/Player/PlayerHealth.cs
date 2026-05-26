@@ -8,11 +8,11 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     {
         health -= damage;
 
-        Debug.Log("Player damaged");
+       
 
         if (health <= 0)
         {
-            Debug.Log("Player Dead");
+            
         }
     }
 }
