@@ -55,7 +55,11 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable
     protected virtual void Die()
     {
         OnDied?.Invoke();
-        OnDied = null; 
+
+        GameEvents.OnEnemyKilled?.Invoke();
+
+        OnDied = null;
+
         EnemyPool.Instance.ReturnToPool(this, prefabKey);
     }
 
