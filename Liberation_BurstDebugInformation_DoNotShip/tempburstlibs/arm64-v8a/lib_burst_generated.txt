@@ -10,6 +10,7 @@ Library: F:\juego\Liberation\Temp\BurstOutput\tempburstlibs\arm64-v8a\lib_burst_
 --target-framework=NetFramework
 --generate-link-xml=Temp\burst.link.xml
 --temp-folder=F:\juego\Liberation\Temp\Burst
+--debug=Full
 --key-folder=C:/6000.4.5f1/Editor/Data/PlaybackEngines/AndroidPlayer
 --decode-folder=F:\juego\Liberation\Library\Burst
 --output=F:\juego\Liberation\Temp\BurstOutput\tempburstlibs\arm64-v8a\lib_burst_generated
@@ -128,6 +129,7 @@ Library: F:\juego\Liberation\Temp\BurstOutput\tempburstlibs\arm64-v8a\lib_burst_
 --float-mode=Fast
 --generate-link-xml=Temp\burst.link.xml
 --temp-folder=F:\juego\Liberation\Temp\Burst
+--debug=Full
 --key-folder=C:/6000.4.5f1/Editor/Data/PlaybackEngines/AndroidPlayer
 --decode-folder=F:\juego\Liberation\Library\Burst
 --output=F:\juego\Liberation\Temp\BurstOutput\tempburstlibs\arm64-v8a\lib_burst_generated
@@ -146,6 +148,7 @@ Library: F:\juego\Liberation\Temp\BurstOutput\tempburstlibs\arm64-v8a\lib_burst_
 --target-framework=NetFramework
 --generate-link-xml=Temp\burst.link.xml
 --temp-folder=F:\juego\Liberation\Temp\Burst
+--debug=Full
 --key-folder=C:/6000.4.5f1/Editor/Data/PlaybackEngines/AndroidPlayer
 --decode-folder=F:\juego\Liberation\Library\Burst
 --output=F:\juego\Liberation\Temp\BurstOutput\tempburstlibs\arm64-v8a\lib_burst_generated

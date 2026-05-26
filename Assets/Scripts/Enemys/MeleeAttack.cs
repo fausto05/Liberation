@@ -11,6 +11,6 @@ public class MeleeAttack : EnemyAttack
             damageable.TakeDamage(stats.damage);
         }
 
-        Debug.Log("Melee Attack");
+       
     }
 }
