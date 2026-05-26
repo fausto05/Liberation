@@ -12,10 +12,13 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector2 keyboardMovement;
     private Vector2 movement;
+    private PlayerDash playerDash;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        playerDash = GetComponent<PlayerDash>();
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -47,6 +50,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.linearVelocity = movement * moveSpeed;
+        if (!playerDash.IsDashing)
+        {
+            rb.linearVelocity = movement * moveSpeed;
+        }
     }
 }

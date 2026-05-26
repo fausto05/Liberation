@@ -5,6 +5,7 @@ public class PlayerCombat : MonoBehaviour
 {
     private PlayerRangedAttack rangedAttack;
     private PlayerMeleeAttack meleeAttack;
+    private PlayerDash playerDash;
 
     private bool isFiring;
 
@@ -12,6 +13,7 @@ public class PlayerCombat : MonoBehaviour
     {
         rangedAttack = GetComponent<PlayerRangedAttack>();
         meleeAttack = GetComponent<PlayerMeleeAttack>();
+        playerDash = GetComponent<PlayerDash>();
     }
 
     private void Update()
@@ -36,6 +38,14 @@ public class PlayerCombat : MonoBehaviour
         if (context.started)
         {
             meleeAttack.TryAttack();
+        }
+    }
+
+    public void OnDash(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            playerDash.TryDash();
         }
     }
 }
