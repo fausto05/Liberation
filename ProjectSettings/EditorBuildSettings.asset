@@ -14,9 +14,12 @@ EditorBuildSettings:
   - enabled: 1
     path: "Assets/Scenes/Men\xFAPrincipal.unity"
     guid: 1da7ac2ee5cb6f4429e4ffcde445e087
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MarianoPlayer.unity
-    guid: bdea360d7dd6e7c46b864a4c59b33a4c
+    guid: a2e205c3f468f144b910917c9a5788e1
+  - enabled: 1
+    path: Assets/Scenes/MarianoUI.unity
+    guid: 90c4003e2b86f58409ffeda515fceae2
   m_configObjects:
     com.unity.adaptivePerformance.basic.provider_settings: {fileID: 11400000, guid: 829f496559af5ec41bf51ef03d30c780, type: 2}
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: a8585ec10f2b20f45859c2c02b3b20ef, type: 2}

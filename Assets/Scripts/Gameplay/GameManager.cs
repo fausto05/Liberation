@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private GameObject pausePanel;
+    [SerializeField] private GameObject missionPanel;
 
     private bool isPaused;
 
@@ -32,14 +34,14 @@ public class GameManager : MonoBehaviour
     {
         isPaused = true;
         Time.timeScale = 0f;
-        gameOverPanel.SetActive(true);
+        pausePanel.SetActive(true);
     }
 
     public void ResumeGame()
     {
         isPaused = false;
         Time.timeScale = 1f;
-        gameOverPanel.SetActive(false);
+        pausePanel.SetActive(false);
     }
 
     public void RetryLevel()
@@ -52,5 +54,10 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(0);
+    }
+
+    public void ToggleMissionPanel()
+    {
+        missionPanel.SetActive(!missionPanel.activeSelf);
     }
 }
