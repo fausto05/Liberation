@@ -17,6 +17,10 @@ public class FirstMission : MissionBase
 
     public override void StartMission()
     {
+        GameEvents.OnPlayerLeftRoom -= HandlePlayerLeftRoom;
+        GameEvents.OnEnemyKilled -= HandleEnemyKilled;
+
+
         GameEvents.OnPlayerLeftRoom += HandlePlayerLeftRoom;
         GameEvents.OnEnemyKilled += HandleEnemyKilled;
 
@@ -58,5 +62,11 @@ public class FirstMission : MissionBase
         GameEvents.OnEnemyKilled -= HandleEnemyKilled;
 
         MissionManager.Instance.StartNextMission();
+    }
+
+    private void OnDestroy()
+    {
+        GameEvents.OnPlayerLeftRoom -= HandlePlayerLeftRoom;
+        GameEvents.OnEnemyKilled -= HandleEnemyKilled;
     }
 }
