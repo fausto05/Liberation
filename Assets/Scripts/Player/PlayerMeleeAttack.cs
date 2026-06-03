@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class PlayerMeleeAttack : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public class PlayerMeleeAttack : MonoBehaviour
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private int damage = 25;
     [SerializeField] private float attackCooldown = 0.5f;
+
+    public event Action OnHitConnected;
 
     private PlayerMovement playerMovement;
 
@@ -30,10 +33,7 @@ public class PlayerMeleeAttack : MonoBehaviour
     private void Attack()
     {
         Vector2 direction = playerMovement.LastMoveDirection.normalized;
-
-
         attackPoint.localPosition = direction * 0.7f;
-
 
         Collider2D[] hits = Physics2D.OverlapCircleAll(
             attackPoint.position,
@@ -41,15 +41,20 @@ public class PlayerMeleeAttack : MonoBehaviour
             enemyLayer
         );
 
+        bool hitConnected = false;
+
         foreach (Collider2D hit in hits)
         {
             IDamageable damageable = hit.GetComponent<IDamageable>();
-
             if (damageable != null)
             {
                 damageable.TakeDamage(damage);
+                hitConnected = true;
             }
         }
+
+        if (hitConnected)
+            OnHitConnected?.Invoke(); 
     }
 
     private void OnDrawGizmosSelected()
