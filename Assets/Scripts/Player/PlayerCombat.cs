@@ -8,6 +8,7 @@ public class PlayerCombat : MonoBehaviour
     private PlayerRangedAttack rangedAttack;
     private PlayerMeleeAttack meleeAttack;
     private PlayerDash playerDash;
+    private PlayerSpecialAttack specialAttack;
 
     private bool isFiring;
 
@@ -16,6 +17,17 @@ public class PlayerCombat : MonoBehaviour
         rangedAttack = GetComponent<PlayerRangedAttack>();
         meleeAttack = GetComponent<PlayerMeleeAttack>();
         playerDash = GetComponent<PlayerDash>();
+        specialAttack = GetComponent<PlayerSpecialAttack>();
+    }
+
+    private void OnEnable()
+    {
+        meleeAttack.OnHitConnected += specialAttack.RegisterHit;
+    }
+
+    private void OnDisable()
+    {
+        meleeAttack.OnHitConnected -= specialAttack.RegisterHit;
     }
 
     private void Update()
@@ -55,5 +67,11 @@ public class PlayerCombat : MonoBehaviour
         {
             playerDash.TryDash();
         }
+    }
+
+    public void OnSpecialAttack(InputAction.CallbackContext context)
+    {
+        if (context.started)
+            specialAttack.TryUseSpecial();
     }
 }
