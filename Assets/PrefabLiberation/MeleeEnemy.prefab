@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 9087011586540506129}
   - component: {fileID: 6109321276674131303}
   - component: {fileID: -7512254716125508052}
+  - component: {fileID: 613789724390851844}
   m_Layer: 7
   m_Name: MeleeEnemy
   m_TagString: Untagged
@@ -194,3 +195,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeAttack
   stats: {fileID: 11400000, guid: 68dd2c76e5327b74fbda66e12bf878d6, type: 2}
+--- !u!195 &613789724390851844
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1042476380505274971}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 100
+  avoidancePriority: 50
+  m_AngularSpeed: 0
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4

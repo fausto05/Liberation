@@ -21,17 +21,13 @@ public class RangedEnemy : EnemyBase
         }
         else
         {
-            rb.linearVelocity = Vector2.zero;
+            agent.ResetPath();
             attack.TryAttack();
         }
     }
 
     private void MoveToPlayer()
     {
-        Vector2 direction = (player.position - transform.position).normalized;
-
-        rb.linearVelocity = direction * stats.moveSpeed;
+        agent.SetDestination(player.position);
     }
-
-
 }
