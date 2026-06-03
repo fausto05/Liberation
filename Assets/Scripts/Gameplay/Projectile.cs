@@ -31,6 +31,12 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Wall"))
+        {
+            ReturnToPool();
+            return;
+        }
+
         IDamageable damageable = other.GetComponent<IDamageable>();
         if (damageable != null)
         {
