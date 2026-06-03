@@ -9,6 +9,11 @@ public class MissionManager : MonoBehaviour
 
     private int currentMissionIndex;
 
+    public MissionBase CurrentMission =>
+        currentMissionIndex < missions.Count
+        ? missions[currentMissionIndex]
+        : null;
+
     private void Awake()
     {
         if (Instance != null)

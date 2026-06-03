@@ -8,11 +8,11 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     {
         health -= damage;
 
-       
-
         if (health <= 0)
         {
-            
+            GameManager.Instance.PlayerDied();
+
+            Destroy(gameObject);
         }
     }
 }

@@ -3,27 +3,37 @@ using UnityEngine;
 public class FirstMission : MissionBase
 {
     [SerializeField] private EnemySpawner enemySpawner;
-
     [SerializeField] private int requiredKills = 1;
 
     private int currentKills;
-
     private bool missionCompleted;
+
+    public override string MissionName => "Eliminar enemigos";
+
+    public override string GetProgressText()
+    {
+        return $"{currentKills}/{requiredKills}";
+    }
 
     public override void StartMission()
     {
+        GameEvents.OnPlayerLeftRoom -= HandlePlayerLeftRoom;
+        GameEvents.OnEnemyKilled -= HandleEnemyKilled;
+
+
         GameEvents.OnPlayerLeftRoom += HandlePlayerLeftRoom;
         GameEvents.OnEnemyKilled += HandleEnemyKilled;
 
         currentKills = 0;
+        missionCompleted = false;
+
+        GameEvents.OnMissionStarted?.Invoke(this);
 
         Debug.Log("Mision iniciada: eliminar enemigos");
     }
 
     private void HandlePlayerLeftRoom()
     {
-        Debug.Log("Jugador salio de la sala");
-
         enemySpawner.ActivateSpawner();
     }
 
@@ -34,7 +44,7 @@ public class FirstMission : MissionBase
 
         currentKills++;
 
-        Debug.Log($"Kills: {currentKills}/{requiredKills}");
+        GameEvents.OnMissionUpdated?.Invoke(this);
 
         if (currentKills >= requiredKills)
         {
@@ -48,11 +58,15 @@ public class FirstMission : MissionBase
 
     public override void CompleteMission()
     {
-        Debug.Log("Mision completada");
-
         GameEvents.OnPlayerLeftRoom -= HandlePlayerLeftRoom;
         GameEvents.OnEnemyKilled -= HandleEnemyKilled;
 
         MissionManager.Instance.StartNextMission();
+    }
+
+    private void OnDestroy()
+    {
+        GameEvents.OnPlayerLeftRoom -= HandlePlayerLeftRoom;
+        GameEvents.OnEnemyKilled -= HandleEnemyKilled;
     }
 }
