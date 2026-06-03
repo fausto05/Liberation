@@ -17,6 +17,9 @@ GameObject:
   - component: {fileID: 700586828607605078}
   - component: {fileID: 8114830096232587120}
   - component: {fileID: 7552584567924089923}
+  - component: {fileID: 6541293188366264170}
+  - component: {fileID: 340436309466160687}
+  - component: {fileID: 7997491560031722801}
   m_Layer: 3
   m_Name: "El\xEDas"
   m_TagString: Player
@@ -38,6 +41,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3597911802457659554}
+  - {fileID: 4635351514952795914}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5879649949513535506
@@ -143,7 +147,19 @@ MonoBehaviour:
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_DeviceRegainedEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -169,9 +185,41 @@ MonoBehaviour:
     m_ActionName: 'Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7552584567924089923}
-        m_TargetAssemblyTypeName: PlayerRangedAttack, Assembly-CSharp
-        m_MethodName: TryFire
+      - m_Target: {fileID: 8114830096232587120}
+        m_TargetAssemblyTypeName: PlayerCombat, Assembly-CSharp
+        m_MethodName: OnDash
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e59817f1-533c-424a-9e56-929fe9a04df0
+    m_ActionName: 'Player/Dash[/Keyboard/leftShift]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8114830096232587120}
+        m_TargetAssemblyTypeName: PlayerCombat, Assembly-CSharp
+        m_MethodName: OnAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b92fea4f-78c9-4eae-867d-e83eff68c03b
+    m_ActionName: 'Player/Attack[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7997491560031722801}
+        m_TargetAssemblyTypeName: PlayerSpecialAttack, Assembly-CSharp
+        m_MethodName: TryUseSpecial
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -181,8 +229,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: afb28133-0d12-4546-8fb9-931d9cc0af68
-    m_ActionName: 'Player/Fire[/Keyboard/space]'
+    m_ActionId: 04303bb2-959a-4a73-b865-4759db575185
+    m_ActionName: 'Player/SpecialAttack[/Keyboard/q]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -214,7 +262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3a3a8d2a9de9254c8bc985a83436875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
-  health: 10
+  health: 50
 --- !u!61 &700586828607605078
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -273,6 +321,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f33cea753cb2e1b458651260250db8b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCombat
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &7552584567924089923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,11 +339,64 @@ MonoBehaviour:
   projectilePrefab: {fileID: 8060462119812819125, guid: 97f82eee1595be441b73e470ee8c53da, type: 3}
   firePoint: {fileID: 3597911802457659554}
   fireRate: 1
-  autoAimRadius: 7
+  autoAimRadius: 9.28
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
   damage: 5
+  minRange: 3.85
+--- !u!114 &6541293188366264170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2241335143752637503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b475460383136384e8a4402caf3b98fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMeleeAttack
+  attackPoint: {fileID: 4635351514952795914}
+  attackRadius: 2.62
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  damage: 5
+  attackCooldown: 0.5
+--- !u!114 &340436309466160687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2241335143752637503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65b9ed61235cbef4f97903a0cef85a4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDash
+  dashForce: 20
+  dashDuration: 0.12
+  dashCooldown: 0.8
+--- !u!114 &7997491560031722801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2241335143752637503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6225b03566c393f409bdda96181d3028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerSpecialAttack
+  hitsRequired: 3
+  specialRadius: 5.49
+  specialDamage: 50
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &3835594437105742189
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,6 +420,37 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3835594437105742189}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2112331239474622019}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5070538992450130907
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4635351514952795914}
+  m_Layer: 3
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4635351514952795914
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5070538992450130907}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}

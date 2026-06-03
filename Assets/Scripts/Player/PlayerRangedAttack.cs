@@ -8,6 +8,7 @@ public class PlayerRangedAttack : MonoBehaviour
     [SerializeField] private float autoAimRadius = 5f;
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private int damage = 10;
+    [SerializeField] private float minRange = 1f;
 
     private PlayerMovement playerMovement;
 
@@ -16,6 +17,20 @@ public class PlayerRangedAttack : MonoBehaviour
     private void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
+    }
+
+    public bool HasTargetInRange()
+    {
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, autoAimRadius, enemyLayer);
+
+        foreach (Collider2D hit in hits)
+        {
+            float dist = Vector2.Distance(transform.position, hit.transform.position);
+            if (dist >= minRange) 
+                return true;
+        }
+
+        return false;
     }
 
     public void TryFire()
@@ -62,5 +77,13 @@ public class PlayerRangedAttack : MonoBehaviour
         }
 
         return (closest.transform.position - firePoint.position).normalized;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, autoAimRadius);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, minRange);
     }
 }
