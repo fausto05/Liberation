@@ -42,14 +42,12 @@ public class PlayerCombat : MonoBehaviour
     {
         if (meleeAttack.HasEnemyInRange())
         {
-            Debug.Log("MELEE");
             meleeAttack.TryAttack();
+            return;
         }
-        else
-        {
-            Debug.Log("RANGED");
+
+        if (rangedAttack.HasTargetInRange()) 
             rangedAttack.TryFire();
-        }
     }
 
     public void OnAttack(InputAction.CallbackContext context)
