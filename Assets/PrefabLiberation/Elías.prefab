@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 6541293188366264170}
   - component: {fileID: 340436309466160687}
   - component: {fileID: 7997491560031722801}
+  - component: {fileID: 8815108374017975055}
   m_Layer: 3
   m_Name: "El\xEDas"
   m_TagString: Player
@@ -41,7 +42,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3597911802457659554}
-  - {fileID: 4635351514952795914}
+  - {fileID: 1297740396333869207}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5879649949513535506
@@ -344,7 +345,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   damage: 5
-  minRange: 3.85
+  minRange: 2.11
 --- !u!114 &6541293188366264170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -357,8 +358,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b475460383136384e8a4402caf3b98fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMeleeAttack
-  attackPoint: {fileID: 4635351514952795914}
-  attackRadius: 2.62
+  attackPoint: {fileID: 1297740396333869207}
+  attackRadius: 1.18
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -397,6 +398,21 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
+--- !u!114 &8815108374017975055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2241335143752637503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65b9ed61235cbef4f97903a0cef85a4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDash
+  dashForce: 20
+  dashDuration: 0.12
+  dashCooldown: 0.8
 --- !u!1 &3835594437105742189
 GameObject:
   m_ObjectHideFlags: 0
@@ -428,7 +444,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2112331239474622019}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5070538992450130907
+--- !u!1 &5962371095074165167
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -436,7 +452,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4635351514952795914}
+  - component: {fileID: 1297740396333869207}
   m_Layer: 3
   m_Name: AttackPoint
   m_TagString: Untagged
@@ -444,13 +460,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4635351514952795914
+--- !u!4 &1297740396333869207
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5070538992450130907}
+  m_GameObject: {fileID: 5962371095074165167}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
