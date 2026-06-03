@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5387414225558294787}
   - component: {fileID: 2397125486143926655}
   - component: {fileID: -1373186694721953635}
+  - component: {fileID: 2641144969073209440}
   m_Layer: 7
   m_Name: RangedEnemy
   m_TagString: Untagged
@@ -84,7 +85,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.6886792, g: 0.09420614, b: 0.09420614, a: 1}
@@ -197,6 +198,28 @@ MonoBehaviour:
   stats: {fileID: 11400000, guid: 6aa792c3480fe884aa17bc80def78590, type: 2}
   firePoint: {fileID: 4075246498463830422}
   projectilePrefab: {fileID: -2452805055359277959, guid: 861c618dd477f994fa0cdf54ad155cc6, type: 3}
+--- !u!195 &2641144969073209440
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3798788250537731469}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 100
+  avoidancePriority: 50
+  m_AngularSpeed: 0
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &7601392273958662547
 GameObject:
   m_ObjectHideFlags: 0

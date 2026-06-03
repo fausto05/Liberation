@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public abstract class EnemyBase : MonoBehaviour, IDamageable
 {
@@ -8,6 +9,7 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable
     [Header("References")]
     protected Transform player;
     protected Rigidbody2D rb;
+    protected NavMeshAgent agent;
 
     protected int currentHealth;
     protected float lastAttackTime;
@@ -17,6 +19,14 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        agent = GetComponent<NavMeshAgent>();
+
+        if (agent != null)
+        {
+            agent.updateRotation = false;
+            agent.updateUpAxis = false;
+        }
     }
 
     protected virtual void Start()
@@ -27,6 +37,11 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         currentHealth = stats.maxHealth;
+
+        if (agent != null)
+        {
+            agent.speed = stats.moveSpeed;
+        }
     }
 
     protected virtual void Update()
