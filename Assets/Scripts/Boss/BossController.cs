@@ -6,12 +6,30 @@ public class BossController : MonoBehaviour, IDamageable
     [Header("Stats")]
     public EnemyStats stats;
 
+    [Header("Charge Attack")]
+    public float chargeSpeed = 10f;
+    public float chargeDuration = 1f;
+    public float chargePrepareTime = 1f;
+
+    [Header("Slam Attack")]
+    public float slamPrepareTime = 1f;
+    public float slamRadius = 3f;
+    public int slamDamage = 20;
+
     [HideInInspector] public Transform player;
     [HideInInspector] public NavMeshAgent agent;
+    [HideInInspector] public Vector2 chargeDirection;
+    [HideInInspector] public Animator animator;
 
     public BossState CurrentState;
 
     public int currentHealth;
+
+    private int attackCounter = 0;
+
+    private bool isCharging;
+
+    public LayerMask playerLayer;
 
     private void Awake()
     {
@@ -19,6 +37,8 @@ public class BossController : MonoBehaviour, IDamageable
 
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+
+        animator = GetComponent<Animator>();
     }
 
     private void Start()
@@ -37,6 +57,8 @@ public class BossController : MonoBehaviour, IDamageable
 
     public void ChangeState(BossState newState)
     {
+        Debug.Log("Estado: " + newState.GetType().Name);
+
         CurrentState?.Exit();
 
         CurrentState = newState;
@@ -52,5 +74,47 @@ public class BossController : MonoBehaviour, IDamageable
         {
             ChangeState(new BossDeathState(this));
         }
+    }
+
+    public void RegisterAttack()
+    {
+        attackCounter++;
+    }
+
+    public int GetAttackCounter()
+    {
+        return attackCounter;
+    }
+
+    public void StartCharge()
+    {
+        isCharging = true;
+    }
+
+    public void EndCharge()
+    {
+        isCharging = false;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (!isCharging)
+            return;
+
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            IDamageable damageable =
+                collision.gameObject.GetComponent<IDamageable>();
+
+            if (damageable != null)
+            {
+                damageable.TakeDamage(stats.damage);
+            }
+        }
+    }
+
+    public void ResetAttackCounter()
+    {
+        attackCounter = 0;
     }
 }

@@ -11,9 +11,13 @@ public class BossMeleeState : BossState
 
     public override void Enter()
     {
+        Debug.Log("MELEE");
+
         boss.agent.ResetPath();
 
         nextAttackTime = 0f;
+
+        boss.animator?.SetTrigger("Melee");
     }
 
     public override void Update()
@@ -50,6 +54,24 @@ public class BossMeleeState : BossState
         {
             damageable.TakeDamage(
                 boss.stats.damage);
+        }
+
+        boss.RegisterAttack();
+
+        if (boss.GetAttackCounter() == 3)
+        {
+            boss.ChangeState(
+                new BossChargePrepareState(boss));
+
+            return;
+        }
+
+        if (boss.GetAttackCounter() == 6)
+        {
+            boss.ChangeState(
+                new BossSlamPrepareState(boss));
+
+            return;
         }
     }
 }
