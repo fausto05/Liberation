@@ -7,6 +7,16 @@ public class BossChaseState : BossState
     {
     }
 
+    public override void Enter()
+    {
+        boss.animator?.SetBool("IsMoving", true);
+    }
+
+    public override void Exit()
+    {
+        boss.animator?.SetBool("IsMoving", false);
+    }
+
     public override void Update()
     {
         float distance =

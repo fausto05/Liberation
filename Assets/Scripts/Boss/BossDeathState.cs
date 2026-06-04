@@ -9,6 +9,6 @@ public class BossDeathState : BossState
 
     public override void Enter()
     {
-        boss.gameObject.SetActive(false);
+        boss.animator?.SetTrigger("Death");
     }
 }
