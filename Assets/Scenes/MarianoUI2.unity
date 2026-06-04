@@ -20842,6 +20842,14 @@ PrefabInstance:
       propertyPath: joystick
       value: 
       objectReference: {fileID: 1829482776}
+    - target: {fileID: 6541293188366264170, guid: e0d7c8b4416637d40aa96ed4ae142ea4, type: 3}
+      propertyPath: attackRadius
+      value: 1.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 7552584567924089923, guid: e0d7c8b4416637d40aa96ed4ae142ea4, type: 3}
+      propertyPath: minRange
+      value: 3.19
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 5070538992450130907, guid: e0d7c8b4416637d40aa96ed4ae142ea4, type: 3}
