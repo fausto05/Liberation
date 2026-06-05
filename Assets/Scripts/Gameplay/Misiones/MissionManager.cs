@@ -27,9 +27,24 @@ public class MissionManager : MonoBehaviour
 
     private void Start()
     {
-        if (missions.Count > 0)
+        SaveData data = SaveSystem.Load();
+
+        Debug.Log($"MissionIndex: {data.missionIndex}");
+        Debug.Log($"GameCompleted: {data.gameCompleted}");
+
+        if (data.gameCompleted)
         {
-            missions[0].StartMission();
+            Debug.Log("Juego ya completado");
+            return;
+        }
+
+        currentMissionIndex = data.missionIndex;
+
+        if (currentMissionIndex < missions.Count)
+        {
+            Debug.Log($"Iniciando misión {currentMissionIndex}");
+
+            missions[currentMissionIndex].StartMission();
         }
     }
 
@@ -37,11 +52,22 @@ public class MissionManager : MonoBehaviour
     {
         currentMissionIndex++;
 
+        SaveData data = SaveSystem.Load();
+
+        data.missionIndex = currentMissionIndex;
+
         if (currentMissionIndex >= missions.Count)
         {
-            Debug.Log("No hay mas misiones");
+            data.gameCompleted = true;
+
+            SaveSystem.Save(data);
+
+            Debug.Log("Juego completado");
+
             return;
         }
+
+        SaveSystem.Save(data);
 
         missions[currentMissionIndex].StartMission();
     }
