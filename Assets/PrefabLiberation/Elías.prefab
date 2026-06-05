@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 340436309466160687}
   - component: {fileID: 7997491560031722801}
   - component: {fileID: 8815108374017975055}
+  - component: {fileID: 4022359162949758766}
   m_Layer: 3
   m_Name: "El\xEDas"
   m_TagString: Player
@@ -340,12 +341,12 @@ MonoBehaviour:
   projectilePrefab: {fileID: 8060462119812819125, guid: 97f82eee1595be441b73e470ee8c53da, type: 3}
   firePoint: {fileID: 3597911802457659554}
   fireRate: 1
-  autoAimRadius: 9.28
+  autoAimRadius: 12.9
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
   damage: 5
-  minRange: 2.11
+  minRange: 3.19
 --- !u!114 &6541293188366264170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -359,7 +360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMeleeAttack
   attackPoint: {fileID: 1297740396333869207}
-  attackRadius: 1.18
+  attackRadius: 1.93
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -413,6 +414,28 @@ MonoBehaviour:
   dashForce: 20
   dashDuration: 0.12
   dashCooldown: 0.8
+--- !u!95 &4022359162949758766
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2241335143752637503}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8f19731c89abf204986ec34d46503434, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3835594437105742189
 GameObject:
   m_ObjectHideFlags: 0

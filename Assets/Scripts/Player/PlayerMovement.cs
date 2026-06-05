@@ -13,11 +13,13 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 keyboardMovement;
     private Vector2 movement;
     private PlayerDash playerDash;
+    private SpriteRenderer spriteRenderer;
+
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-
+        spriteRenderer = GetComponent<SpriteRenderer>();
         playerDash = GetComponent<PlayerDash>();
     }
 
@@ -46,6 +48,19 @@ public class PlayerMovement : MonoBehaviour
 
         if (movement != Vector2.zero)
             LastMoveDirection = movement;
+
+        if (movement.x < 0)
+            spriteRenderer.flipX = true;
+        else if (movement.x > 0)
+            spriteRenderer.flipX = false;
+    }
+
+    public void SetFacingDirection(Vector2 direction)
+    {
+        if (direction.x < 0)
+            spriteRenderer.flipX = true;
+        else if (direction.x > 0)
+            spriteRenderer.flipX = false;
     }
 
     private void FixedUpdate()

@@ -11,12 +11,14 @@ public class PlayerRangedAttack : MonoBehaviour
     [SerializeField] private float minRange = 1f;
 
     private PlayerMovement playerMovement;
+    private Animator animator;
 
     private float nextFireTime;
 
     private void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
+        animator = GetComponent<Animator>();
     }
 
     public bool HasTargetInRange()
@@ -39,7 +41,13 @@ public class PlayerRangedAttack : MonoBehaviour
             return;
 
         nextFireTime = Time.time + fireRate;
+        playerMovement.SetFacingDirection(GetAimDirection());
 
+        animator.SetTrigger("Attack");
+    }
+
+    public void ShootProjectile()
+    {
         Fire();
     }
 
