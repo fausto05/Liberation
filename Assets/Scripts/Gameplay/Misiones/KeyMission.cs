@@ -23,7 +23,7 @@ public class KeyMission : MissionBase
 
         GameEvents.OnMissionStarted?.Invoke(this);
 
-        Debug.Log("Mision iniciada: recoger la llave");
+        
     }
 
     private void HandleKeyCollected()

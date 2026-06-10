@@ -22,6 +22,8 @@ public class EnemySpawner : MonoBehaviour
     private void Start()
     {
         isActive = startActive;
+
+        
     }
     private void Update()
     {
@@ -41,6 +43,8 @@ public class EnemySpawner : MonoBehaviour
 
     public void ActivateSpawner()
     {
+        
+
         isActive = true;
     }
 
@@ -63,4 +67,6 @@ public class EnemySpawner : MonoBehaviour
     {
         entry.activeCount--;
     }
+
+    
 }

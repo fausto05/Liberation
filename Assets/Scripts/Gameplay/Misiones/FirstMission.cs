@@ -17,6 +17,8 @@ public class FirstMission : MissionBase
 
     public override void StartMission()
     {
+        Debug.Log($"SUSCRIBIENDO {gameObject.name}");
+
         GameEvents.OnPlayerLeftRoom -= HandlePlayerLeftRoom;
         GameEvents.OnEnemyKilled -= HandleEnemyKilled;
 
@@ -29,16 +31,29 @@ public class FirstMission : MissionBase
 
         GameEvents.OnMissionStarted?.Invoke(this);
 
-        Debug.Log("Mision iniciada: eliminar enemigos");
+        
     }
 
     private void HandlePlayerLeftRoom()
     {
+        Debug.Log($"HANDLE PLAYER LEFT ROOM EN {gameObject.name}");
+
+        if (MissionManager.Instance.CurrentMission != this)
+        {
+            Debug.Log("NO SOY LA MISION ACTUAL");
+            return;
+        }
+
+        Debug.Log("ACTIVANDO SPAWNER");
+
         enemySpawner.ActivateSpawner();
     }
 
     private void HandleEnemyKilled()
     {
+        if (MissionManager.Instance.CurrentMission != this)
+            return;
+
         if (missionCompleted)
             return;
 

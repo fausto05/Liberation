@@ -1814,6 +1814,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 512bb4ecae87ace4c9e3938f445dec20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExitRoomTrigger
+  missionToActivate: {fileID: 1623195755}
 --- !u!61 &810909581
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -17218,6 +17219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 512bb4ecae87ace4c9e3938f445dec20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExitRoomTrigger
+  missionToActivate: {fileID: 341129847}
 --- !u!61 &1651546052
 BoxCollider2D:
   m_ObjectHideFlags: 0
