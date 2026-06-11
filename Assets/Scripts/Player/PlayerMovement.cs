@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 LastMoveDirection { get; private set; } = Vector2.down;
 
     private Rigidbody2D rb;
-
+    private Animator animator;
     private Vector2 keyboardMovement;
     private Vector2 movement;
     private PlayerDash playerDash;
@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         playerDash = GetComponent<PlayerDash>();
+        animator = GetComponent<Animator>();
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -53,6 +54,8 @@ public class PlayerMovement : MonoBehaviour
             spriteRenderer.flipX = true;
         else if (movement.x > 0)
             spriteRenderer.flipX = false;
+
+        animator.SetBool("isMoving", movement != Vector2.zero);
     }
 
     public void SetFacingDirection(Vector2 direction)
