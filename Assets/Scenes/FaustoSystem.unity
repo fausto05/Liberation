@@ -16123,13 +16123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4352a826e10e8142a96b2e587d3b321, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectilePool
-  entries:
-  - prefab: {fileID: 8060462119812819125, guid: 97f82eee1595be441b73e470ee8c53da, type: 3}
-    initialSize: 10
-  - prefab: {fileID: -2452805055359277959, guid: 861c618dd477f994fa0cdf54ad155cc6, type: 3}
-    initialSize: 10
-  - prefab: {fileID: -2452805055359277959, guid: 9b452a9c0abb7ad4688525c2b5888338, type: 3}
-    initialSize: 10
+  entries: []
 --- !u!4 &1249724242
 Transform:
   m_ObjectHideFlags: 0
@@ -16480,17 +16474,6 @@ MonoBehaviour:
     m_Bits: 128
   damage: 5
   attackCooldown: 0.5
---- !u!114 &1437214493 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8114830096232587120, guid: e0d7c8b4416637d40aa96ed4ae142ea4, type: 3}
-  m_PrefabInstance: {fileID: 6425974849916484105}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 602756070}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f33cea753cb2e1b458651260250db8b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerCombat
 --- !u!114 &1437214494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20810,15 +20793,15 @@ PrefabInstance:
     - target: {fileID: 7093748692402681797, guid: e0d7c8b4416637d40aa96ed4ae142ea4, type: 3}
       propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1437214493}
+      objectReference: {fileID: 0}
     - target: {fileID: 7093748692402681797, guid: e0d7c8b4416637d40aa96ed4ae142ea4, type: 3}
       propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1437214493}
+      objectReference: {fileID: 0}
     - target: {fileID: 7093748692402681797, guid: e0d7c8b4416637d40aa96ed4ae142ea4, type: 3}
       propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1437214493}
+      objectReference: {fileID: 0}
     - target: {fileID: 7093748692402681797, guid: e0d7c8b4416637d40aa96ed4ae142ea4, type: 3}
       propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
