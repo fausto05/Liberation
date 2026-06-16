@@ -23,7 +23,7 @@ public class Door : MonoBehaviour
 
         isUnlocked = true;
 
-        doorCollider.enabled = false;
+        gameObject.SetActive(false);
 
         Debug.Log("Puerta desbloqueada");
     }

@@ -46,8 +46,7 @@ public class PlayerCombat : MonoBehaviour
             return;
         }
 
-        if (rangedAttack.HasTargetInRange()) 
-            rangedAttack.TryFire();
+        rangedAttack.TryFire();
     }
 
     public void OnAttack(InputAction.CallbackContext context)
