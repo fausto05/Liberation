@@ -17,11 +17,13 @@ public class RangedEnemy : EnemyBase
 
         if (distance > stats.attackRange)
         {
+            animator.SetBool("isMoving", true);
             MoveToPlayer();
         }
         else
         {
             agent.ResetPath();
+            animator.SetBool("isMoving", false);
             attack.TryAttack();
         }
     }

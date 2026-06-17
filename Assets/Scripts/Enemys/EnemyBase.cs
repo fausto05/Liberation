@@ -10,6 +10,7 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable
     protected Transform player;
     protected Rigidbody2D rb;
     protected NavMeshAgent agent;
+    protected Animator animator;
 
     protected int currentHealth;
     protected float lastAttackTime;
@@ -19,6 +20,7 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
 
         agent = GetComponent<NavMeshAgent>();
 
