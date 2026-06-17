@@ -15,14 +15,15 @@ public class MeleeEnemy : EnemyBase
     protected override void HandleBehavior()
     {
         float distance = DistanceToPlayer();
-
         if (distance > stats.attackRange)
         {
             MoveToPlayer();
+            animator.SetBool("isMoving", true);
         }
         else
         {
             agent.ResetPath();
+            animator.SetBool("isMoving", false);
             attack.TryAttack();
         }
     }
