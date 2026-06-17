@@ -1,22 +1,31 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerHealth : MonoBehaviour, IDamageable
 {
     public int health = 100;
+    private Animator animator;
+    private bool isDead = false;
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     public void TakeDamage(int damage)
     {
-        Debug.Log("Daño recibido: " + damage);
-
+        if (isDead) return;
         health -= damage;
-
-        Debug.Log("Vida actual: " + health);
-        
         if (health <= 0)
         {
-            GameManager.Instance.PlayerDied();
-
-            Destroy(gameObject);
+            isDead = true;
+            animator.SetTrigger("Death");
         }
+    }
+
+    public void OnDeathAnimationEnd()
+    {
+        GameManager.Instance.PlayerDied();
+        Destroy(gameObject);
     }
 }
