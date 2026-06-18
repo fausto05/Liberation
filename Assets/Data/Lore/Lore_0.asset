@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b7e4e88278e76d4a985d5ae430da4fd, type: 3}
+  m_Name: Lore_0
+  m_EditorClassIdentifier: Assembly-CSharp::LoreData
+  id: 0
+  title: "Registro de Activaci\xF3n"
+  description: La unidad fue activada para infiltrarse en las instalaciones...
+  icon: {fileID: 0}
