@@ -10,8 +10,6 @@ public class PlayerCombat : MonoBehaviour
     private PlayerDash playerDash;
     private PlayerSpecialAttack specialAttack;
 
-    private bool isFiring;
-
     private void Awake()
     {
         rangedAttack = GetComponent<PlayerRangedAttack>();
@@ -30,32 +28,20 @@ public class PlayerCombat : MonoBehaviour
         meleeAttack.OnHitConnected -= specialAttack.RegisterHit;
     }
 
-    private void Update()
-    {
-        if (isFiring)
-        {
-            SmartAttack();
-        }
-    }
-
-    private void SmartAttack()
-    {
-        if (meleeAttack.HasEnemyInRange())
-        {
-            meleeAttack.TryAttack();
-            return;
-        }
-
-        rangedAttack.TryFire();
-    }
-
     public void OnAttack(InputAction.CallbackContext context)
     {
         if (context.started)
-            isFiring = true;
+        {
+            rangedAttack.TryFire();
+        }
+    }
 
-        if (context.canceled)
-            isFiring = false;
+    public void OnMeleeAttack(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            meleeAttack.TryAttack();
+        }
     }
 
     public void OnDash(InputAction.CallbackContext context)
