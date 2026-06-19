@@ -2,20 +2,33 @@ using UnityEngine;
 
 public class PlayerSpecialAttack : MonoBehaviour
 {
-    [SerializeField] private int hitsRequired = 5;
+    [SerializeField] private int hitsRequired = 3;
     [SerializeField] private float specialRadius = 3f;   
     [SerializeField] private int specialDamage = 50;     
-    [SerializeField] private LayerMask enemyLayer;       
+    [SerializeField] private LayerMask enemyLayer;
+    [SerializeField] private SpecialButtonUI specialButtonUI;
 
     private int hitCounter = 0;
     public bool IsReady => hitCounter >= hitsRequired;
 
-    
+    public void Start()
+    {
+        specialButtonUI.UpdateCharge(0f);
+    }
+
+
     public void RegisterHit()
     {
-        if (IsReady) return; 
+        if (IsReady)
+            return;
 
         hitCounter++;
+
+        float progress =
+            (float)hitCounter / hitsRequired;
+
+        specialButtonUI.UpdateCharge(progress);
+
         Debug.Log($"Hits hacia especial: {hitCounter}/{hitsRequired}");
     }
 
@@ -28,7 +41,10 @@ public class PlayerSpecialAttack : MonoBehaviour
         }
 
         ExecuteSpecial();
+
         hitCounter = 0;
+
+        specialButtonUI.UpdateCharge(0f);
     }
 
     private void ExecuteSpecial()
