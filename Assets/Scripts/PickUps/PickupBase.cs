@@ -12,12 +12,15 @@ public abstract class PickupBase : MonoBehaviour
         if (!other.CompareTag("Player"))
             return;
 
-        collected = true;
+        bool pickedUp = OnPickup(other.gameObject);
 
-        OnPickup(other.gameObject);
+        if (!pickedUp)
+            return;
+
+        collected = true;
 
         gameObject.SetActive(false);
     }
 
-    protected abstract void OnPickup(GameObject player);
+    protected abstract bool OnPickup(GameObject player);
 }
