@@ -50900,7 +50900,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: SPECIAL ATTACK
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -52666,6 +52666,7 @@ GameObject:
   - component: {fileID: 1729905907}
   - component: {fileID: 1729905906}
   - component: {fileID: 1729905905}
+  - component: {fileID: 1729905909}
   m_Layer: 5
   m_Name: SpecialAttack
   m_TagString: Untagged
@@ -52691,7 +52692,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 458, y: -115}
-  m_SizeDelta: {x: 300, y: 70}
+  m_SizeDelta: {x: 300, y: 170}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1729905905
 MonoBehaviour:
@@ -52770,8 +52771,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: b5016087f37086c4a96dcbdef0e40aba, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -52788,6 +52789,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1729905903}
   m_CullTransparentMesh: 1
+--- !u!114 &1729905909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1729905903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49ec1fa38fa511845815a49a84045a97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpecialButtonUI
+  buttonImage: {fileID: 1729905907}
+  emptyColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  fullColor: {r: 1, g: 0.5, b: 0, a: 1}
 --- !u!1 &1792421169
 GameObject:
   m_ObjectHideFlags: 0
@@ -66681,6 +66697,10 @@ PrefabInstance:
       propertyPath: minRange
       value: 3.19
       objectReference: {fileID: 0}
+    - target: {fileID: 7997491560031722801, guid: e0d7c8b4416637d40aa96ed4ae142ea4, type: 3}
+      propertyPath: specialButtonUI
+      value: 
+      objectReference: {fileID: 1729905909}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 5070538992450130907, guid: e0d7c8b4416637d40aa96ed4ae142ea4, type: 3}
