@@ -13,7 +13,7 @@ EditorBuildSettings:
     guid: 1da7ac2ee5cb6f4429e4ffcde445e087
   - enabled: 1
     path: Assets/Scenes/MarianoMisiones.unity
-    guid: cd478c6ed72f49f4fa9ed6548256443c
+    guid: d01bcab037a855a49ba380aaf2e3db95
   - enabled: 0
     path: Assets/Scenes/MarianoNiveles.unity
     guid: 0e4ad006b2d53ec468bd7db4db8aef2f

@@ -12,12 +12,13 @@ public class PlayerMeleeAttack : MonoBehaviour
     public event Action OnHitConnected;
 
     private PlayerMovement playerMovement;
-
+    private Animator animator;
     private float nextAttackTime;
 
     private void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
+        animator = GetComponent<Animator>();
     }
 
     public void TryAttack()
@@ -27,12 +28,17 @@ public class PlayerMeleeAttack : MonoBehaviour
 
         nextAttackTime = Time.time + attackCooldown;
 
-        Attack();
+        animator.SetTrigger("MeleeAttack");
     }
 
-    private void Attack()
+    
+    public void Attack()
     {
         Vector2 direction = playerMovement.LastMoveDirection.normalized;
+
+        if (direction == Vector2.zero)
+            direction = Vector2.down;
+
         attackPoint.localPosition = direction * 0.7f;
 
         Collider2D[] hits = Physics2D.OverlapCircleAll(
@@ -46,6 +52,7 @@ public class PlayerMeleeAttack : MonoBehaviour
         foreach (Collider2D hit in hits)
         {
             IDamageable damageable = hit.GetComponent<IDamageable>();
+
             if (damageable != null)
             {
                 damageable.TakeDamage(damage);
@@ -54,22 +61,15 @@ public class PlayerMeleeAttack : MonoBehaviour
         }
 
         if (hitConnected)
-            OnHitConnected?.Invoke(); 
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        if (attackPoint == null)
-            return;
-
-        Gizmos.color = Color.red;
-
-        Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
+            OnHitConnected?.Invoke();
     }
 
     public bool HasEnemyInRange()
     {
         Vector2 direction = playerMovement.LastMoveDirection.normalized;
+
+        if (direction == Vector2.zero)
+            direction = Vector2.down;
 
         attackPoint.localPosition = direction * 0.7f;
 
@@ -80,5 +80,14 @@ public class PlayerMeleeAttack : MonoBehaviour
         );
 
         return hit != null;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (attackPoint == null)
+            return;
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
     }
 }
