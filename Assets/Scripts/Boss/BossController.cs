@@ -96,6 +96,38 @@ public class BossController : MonoBehaviour, IDamageable
         isCharging = false;
     }
 
+    public void OnMeleeHit()
+    {
+        IDamageable damageable = player.GetComponent<IDamageable>();
+        if (damageable != null)
+            damageable.TakeDamage(stats.damage);
+
+        RegisterAttack();
+        if (GetAttackCounter() == 3)
+        {
+            ChangeState(new BossChargePrepareState(this));
+            return;
+        }
+        if (GetAttackCounter() == 6)
+        {
+            ChangeState(new BossSlamPrepareState(this));
+            return;
+        }
+    }
+    public void OnSlamHit()
+    {
+        Collider2D playerHit = Physics2D.OverlapCircle(
+            transform.position, slamRadius, playerLayer);
+        if (playerHit != null)
+        {
+            IDamageable damageable = playerHit.GetComponent<IDamageable>();
+            if (damageable != null)
+                damageable.TakeDamage(slamDamage);
+        }
+        ResetAttackCounter();
+        ChangeState(new BossChaseState(this));
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (!isCharging)

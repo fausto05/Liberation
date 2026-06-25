@@ -9,7 +9,13 @@ public class PlayerSpecialAttack : MonoBehaviour
     [SerializeField] private SpecialButtonUI specialButtonUI;
 
     private int hitCounter = 0;
+    private Animator animator;
     public bool IsReady => hitCounter >= hitsRequired;
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     public void Start()
     {
@@ -34,17 +40,15 @@ public class PlayerSpecialAttack : MonoBehaviour
 
     public void TryUseSpecial()
     {
-        if (!IsReady)
-        {
-            Debug.Log("Especial no cargado aún.");
-            return;
-        }
-
-        ExecuteSpecial();
-
+        if (!IsReady) return;
+        animator.SetTrigger("SpecialAttack");
         hitCounter = 0;
-
         specialButtonUI.UpdateCharge(0f);
+    }
+
+    public void OnSpecialHit()
+    {
+        ExecuteSpecial();
     }
 
     private void ExecuteSpecial()
