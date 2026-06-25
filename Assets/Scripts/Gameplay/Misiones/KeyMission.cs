@@ -26,7 +26,7 @@ public class KeyMission : MissionBase
         
     }
 
-    private void HandleKeyCollected()
+    private void HandleKeyCollected(int keyID)
     {
         if (missionCompleted)
             return;
