@@ -2,11 +2,13 @@ using UnityEngine;
 
 public class KeyPickup : PickupBase
 {
+    [SerializeField] private int keyID;
+
     protected override bool OnPickup(GameObject player)
     {
-        Debug.Log("Llave recogida");
+        Debug.Log($"Llave {keyID} recogida");
 
-        GameEvents.OnKeyCollected?.Invoke();
+        GameEvents.OnKeyCollected?.Invoke(keyID);
 
         return true;
     }
