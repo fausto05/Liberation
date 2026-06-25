@@ -10,4 +10,5 @@ public static class GameEvents
 
     public static Action<MissionBase> OnMissionStarted;
     public static Action<MissionBase> OnMissionUpdated;
+    public static Action OnBossKilled;
 }
