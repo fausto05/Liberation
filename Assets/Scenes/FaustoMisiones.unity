@@ -690,7 +690,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 110853340}
-  - component: {fileID: 110853339}
+  - component: {fileID: 110853341}
   m_Layer: 0
   m_Name: BossSpawner
   m_TagString: Untagged
@@ -698,27 +698,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &110853339
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 110853338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7da1764c3878344cb45e6787a209968, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
-  spawnEntries:
-  - prefab: {fileID: 0}
-    spawnInterval: 1
-    maxActive: 1
-    activeCount: 0
-    timer: 0
-  spawnPoints:
-  - {fileID: 1039651664}
-  startActive: 0
 --- !u!4 &110853340
 Transform:
   m_ObjectHideFlags: 0
@@ -735,6 +714,20 @@ Transform:
   - {fileID: 1039651664}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &110853341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110853338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c918e11720fea946969eac1aba369bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossSpawner
+  bossPrefab: {fileID: 2442535789263561585, guid: de3bc935bf36d04458db4f86288be049, type: 3}
+  spawnPoint: {fileID: 1039651664}
 --- !u!1 &123958117
 GameObject:
   m_ObjectHideFlags: 0
@@ -4741,7 +4734,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f17a3ba9feec01940a5e6e2f67819c14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossMission
-  bossSpawner: {fileID: 110853339}
+  bossSpawner: {fileID: 110853341}
   supportSpawner: {fileID: 91597550}
 --- !u!4 &890533847
 Transform:

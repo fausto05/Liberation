@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BossMission : MissionBase
 {
-    [SerializeField] private EnemySpawner bossSpawner;
+    [SerializeField] private BossSpawner bossSpawner;
     [SerializeField] private EnemySpawner supportSpawner;
 
     public override string MissionName => "Derrotar al jefe";
@@ -14,23 +14,27 @@ public class BossMission : MissionBase
 
     public override void StartMission()
     {
-        GameEvents.OnPlayerLeftRoom -= HandleBossStarted;
-        GameEvents.OnPlayerLeftRoom += HandleBossStarted;
+        GameEvents.OnPlayerLeftRoom -= HandleBossStart;
+        GameEvents.OnPlayerLeftRoom += HandleBossStart;
 
+        GameEvents.OnBossKilled -= HandleBossKilled;
         GameEvents.OnBossKilled += HandleBossKilled;
 
         GameEvents.OnMissionStarted?.Invoke(this);
     }
 
-    private void HandleBossStarted()
+    private void HandleBossStart()
     {
         if (MissionManager.Instance.CurrentMission != this)
             return;
 
-        Debug.Log("COMIENZA JEFE");
+        Debug.Log("BOSS FIGHT START");
 
-        bossSpawner.ActivateSpawner();
-        supportSpawner.ActivateSpawner();
+        if (bossSpawner != null)
+            bossSpawner.SpawnBoss();
+
+        if (supportSpawner != null)
+            supportSpawner.ActivateSpawner();
     }
 
     private void HandleBossKilled()
@@ -40,18 +44,18 @@ public class BossMission : MissionBase
 
     public override void CompleteMission()
     {
-        GameEvents.OnPlayerLeftRoom -= HandleBossStarted;
+        GameEvents.OnPlayerLeftRoom -= HandleBossStart;
         GameEvents.OnBossKilled -= HandleBossKilled;
 
-        bossSpawner.DeactivateSpawner();
-        supportSpawner.DeactivateSpawner();
+        if (supportSpawner != null)
+            supportSpawner.DeactivateSpawner();
 
         MissionManager.Instance.StartNextMission();
     }
 
     private void OnDestroy()
     {
-        GameEvents.OnPlayerLeftRoom -= HandleBossStarted;
+        GameEvents.OnPlayerLeftRoom -= HandleBossStart;
         GameEvents.OnBossKilled -= HandleBossKilled;
     }
 }

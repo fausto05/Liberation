@@ -149,4 +149,9 @@ public class BossController : MonoBehaviour, IDamageable
     {
         attackCounter = 0;
     }
+
+    public void BossKilled()
+    {
+        GameEvents.OnBossKilled?.Invoke();
+    }
 }
