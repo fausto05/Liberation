@@ -12,6 +12,9 @@ public class BossMeleeState : BossState
     public override void Enter()
     {
         boss.agent.ResetPath();
+
+        boss.LookAtPlayer();
+
         boss.animator?.SetTrigger("Melee");
     }
 

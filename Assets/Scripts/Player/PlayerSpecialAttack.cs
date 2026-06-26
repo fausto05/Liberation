@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerSpecialAttack : MonoBehaviour
@@ -10,11 +11,13 @@ public class PlayerSpecialAttack : MonoBehaviour
 
     private int hitCounter = 0;
     private Animator animator;
+    private PlayerMovement playerMovement;
     public bool IsReady => hitCounter >= hitsRequired;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        playerMovement = GetComponent<PlayerMovement>();
     }
 
     public void Start()
@@ -41,6 +44,7 @@ public class PlayerSpecialAttack : MonoBehaviour
     public void TryUseSpecial()
     {
         if (!IsReady) return;
+        playerMovement.CanMove = false;
         animator.SetTrigger("SpecialAttack");
         hitCounter = 0;
         specialButtonUI.UpdateCharge(0f);
@@ -75,4 +79,6 @@ public class PlayerSpecialAttack : MonoBehaviour
         Gizmos.color = Color.magenta;
         Gizmos.DrawWireSphere(transform.position, specialRadius);
     }
+
+    
 }

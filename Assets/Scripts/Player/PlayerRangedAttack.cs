@@ -41,7 +41,10 @@ public class PlayerRangedAttack : MonoBehaviour
             return;
 
         nextFireTime = Time.time + fireRate;
+
         playerMovement.SetFacingDirection(GetAimDirection());
+
+        playerMovement.CanMove = false;
 
         animator.SetTrigger("Attack");
     }
