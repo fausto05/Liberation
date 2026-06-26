@@ -26,6 +26,8 @@ public class BossChaseState : BossState
 
         boss.agent.SetDestination(boss.player.position);
 
+        boss.LookAtPlayer();
+
         if (distance <= boss.stats.attackRange)
         {
             boss.ChangeState(

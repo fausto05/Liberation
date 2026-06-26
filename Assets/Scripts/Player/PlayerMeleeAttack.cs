@@ -28,6 +28,8 @@ public class PlayerMeleeAttack : MonoBehaviour
 
         nextAttackTime = Time.time + attackCooldown;
 
+        playerMovement.CanMove = false;
+
         animator.SetTrigger("MeleeAttack");
     }
 

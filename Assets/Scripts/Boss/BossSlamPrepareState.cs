@@ -11,6 +11,8 @@ public class BossSlamPrepareState : BossState
 
     public override void Enter()
     {
+        boss.LookAtPlayer();
+
         boss.animator?.SetTrigger("SlamPrepare");
 
         timer = boss.slamPrepareTime;

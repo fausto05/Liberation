@@ -17,6 +17,8 @@ public class BossChargePrepareState : BossState
 
         boss.agent.ResetPath();
 
+        boss.LookAtPlayer();
+
         boss.chargeDirection =
             (boss.player.position - boss.transform.position)
             .normalized;

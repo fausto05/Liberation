@@ -31,6 +31,8 @@ public class BossController : MonoBehaviour, IDamageable
 
     public LayerMask playerLayer;
 
+    private SpriteRenderer spriteRenderer;
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -39,6 +41,8 @@ public class BossController : MonoBehaviour, IDamageable
         agent.updateUpAxis = false;
 
         animator = GetComponent<Animator>();
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Start()
@@ -153,5 +157,14 @@ public class BossController : MonoBehaviour, IDamageable
     public void BossKilled()
     {
         GameEvents.OnBossKilled?.Invoke();
+    }
+
+    public void LookAtPlayer()
+    {
+        if (player == null)
+            return;
+
+        spriteRenderer.flipX =
+            player.position.x < transform.position.x;
     }
 }

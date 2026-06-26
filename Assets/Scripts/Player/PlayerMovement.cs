@@ -5,6 +5,8 @@ public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public Joystick joystick;
+    
+    public bool CanMove { get; set; } = true;
 
     public Vector2 LastMoveDirection { get; private set; } = Vector2.down;
 
@@ -31,9 +33,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (!CanMove)
+        {
+            movement = Vector2.zero;
+            animator.SetBool("isMoving", false);
+            return;
+        }
+
         movement = keyboardMovement;
 
-       
         if (joystick != null)
         {
             Vector2 joystickInput = new Vector2(
@@ -68,9 +76,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!CanMove)
+        {
+            rb.linearVelocity = Vector2.zero;
+            return;
+        }
+
         if (!playerDash.IsDashing)
         {
             rb.linearVelocity = movement * moveSpeed;
         }
+    }
+
+    public void EnableMovement()
+    {
+        CanMove = true;
     }
 }
