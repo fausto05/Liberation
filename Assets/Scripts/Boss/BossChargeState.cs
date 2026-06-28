@@ -22,18 +22,14 @@ public class BossChargeState : BossState
 
     public override void Update()
     {
-        timer -= Time.deltaTime;
+        boss.transform.position += (Vector3)(boss.chargeDirection *
+         boss.chargeSpeed *
+         Time.deltaTime);
+    }
 
-        boss.transform.position +=
-            (Vector3)(boss.chargeDirection *
-            boss.chargeSpeed *
-            Time.deltaTime);
-
-        if (timer <= 0f)
-        {
-            boss.ChangeState(
-                new BossChaseState(boss));
-        }
+    public override void OnWallHit()
+    {
+        boss.ChangeState(new BossChaseState(boss)); 
     }
 
     public override void Exit()

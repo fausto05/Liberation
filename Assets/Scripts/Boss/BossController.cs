@@ -141,11 +141,14 @@ public class BossController : MonoBehaviour, IDamageable
         {
             IDamageable damageable =
                 collision.gameObject.GetComponent<IDamageable>();
-
             if (damageable != null)
             {
                 damageable.TakeDamage(stats.damage);
             }
+        }
+        else if (collision.gameObject.layer == LayerMask.NameToLayer("Wall"))
+        {
+            CurrentState?.OnWallHit();
         }
     }
 
