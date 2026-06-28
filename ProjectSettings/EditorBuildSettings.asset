@@ -16,7 +16,10 @@ EditorBuildSettings:
     guid: 4a74438f15bc8014f88b50a5241ccd65
   - enabled: 0
     path: Assets/Scenes/MarianoMisiones.unity
-    guid: d01bcab037a855a49ba380aaf2e3db95
+    guid: 3042e40c37c58c7499739a506c359ba1
+  - enabled: 0
+    path: Assets/Scenes/FaustoMisiones.unity
+    guid: 4a74438f15bc8014f88b50a5241ccd65
   - enabled: 0
     path: Assets/Scenes/MarianoNiveles.unity
     guid: 0e4ad006b2d53ec468bd7db4db8aef2f
