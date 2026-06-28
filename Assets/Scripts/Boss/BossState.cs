@@ -9,6 +9,8 @@ public abstract class BossState
         this.boss = boss;
     }
 
+    public virtual void OnWallHit() { }
+
     public virtual void Enter() { }
 
     public virtual void Update() { }
