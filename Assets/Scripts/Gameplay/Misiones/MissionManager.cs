@@ -43,15 +43,20 @@ public class MissionManager : MonoBehaviour
 
         if (currentMissionIndex < missions.Count)
         {
-            
-
             missions[currentMissionIndex].StartMission();
+
+            if (missions[currentMissionIndex] is BossMission bossMission)
+            {
+                bossMission.ForceStartBoss();
+            }
         }
     }
 
     public void StartNextMission()
     {
         currentMissionIndex++;
+
+        Debug.Log($"MISSION INDEX -> {currentMissionIndex}");
 
         SaveData data = SaveSystem.Load();
 
@@ -63,14 +68,11 @@ public class MissionManager : MonoBehaviour
 
             SaveSystem.Save(data);
 
-            
-
             return;
         }
 
         SaveSystem.Save(data);
 
-        
         missions[currentMissionIndex].StartMission();
     }
 }

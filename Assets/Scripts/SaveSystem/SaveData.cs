@@ -6,6 +6,8 @@ public class SaveData
 {
     public int missionIndex = 0;
 
+    public int checkpointID = 0;
+
     public bool gameCompleted = false;
 
     public List<int> unlockedLore = new();

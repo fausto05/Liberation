@@ -7,6 +7,8 @@ public class BossMission : MissionBase
 
     public override string MissionName => "Derrotar al jefe";
 
+    private bool bossSpawned;
+
     public override string GetProgressText()
     {
         return "0/1";
@@ -25,6 +27,11 @@ public class BossMission : MissionBase
 
     private void HandleBossStart()
     {
+        if (bossSpawned)
+            return;
+
+        bossSpawned = true;
+
         if (MissionManager.Instance.CurrentMission != this)
             return;
 
@@ -57,5 +64,10 @@ public class BossMission : MissionBase
     {
         GameEvents.OnPlayerLeftRoom -= HandleBossStart;
         GameEvents.OnBossKilled -= HandleBossKilled;
+    }
+
+    public void ForceStartBoss()
+    {
+        HandleBossStart();
     }
 }
