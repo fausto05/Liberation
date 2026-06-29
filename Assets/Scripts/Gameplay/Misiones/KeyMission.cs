@@ -15,6 +15,7 @@ public class KeyMission : MissionBase
 
     public override void StartMission()
     {
+        GameEvents.OnKeyCollected -= HandleKeyCollected;
         GameEvents.OnKeyCollected += HandleKeyCollected;
 
         missionCompleted = false;
@@ -22,16 +23,22 @@ public class KeyMission : MissionBase
         keyObject.SetActive(true);
 
         GameEvents.OnMissionStarted?.Invoke(this);
-
-        
     }
 
     private void HandleKeyCollected(int keyID)
     {
+        Debug.Log(
+        $"KEY MISSION: {name} | Current = {MissionManager.Instance.CurrentMission.name}");
+
+        if (MissionManager.Instance.CurrentMission != this)
+            return;
+
         if (missionCompleted)
             return;
 
         missionCompleted = true;
+
+        Debug.Log($"COMPLETANDO {name}");
 
         GameEvents.OnMissionUpdated?.Invoke(this);
 
@@ -43,5 +50,10 @@ public class KeyMission : MissionBase
         GameEvents.OnKeyCollected -= HandleKeyCollected;
 
         MissionManager.Instance.StartNextMission();
+    }
+
+    private void OnDestroy()
+    {
+        GameEvents.OnKeyCollected -= HandleKeyCollected;
     }
 }
