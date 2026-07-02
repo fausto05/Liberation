@@ -109,31 +109,39 @@ public class BossController : MonoBehaviour, IDamageable
     public void OnMeleeHit()
     {
         IDamageable damageable = player.GetComponent<IDamageable>();
+
         if (damageable != null)
             damageable.TakeDamage(stats.damage);
 
         RegisterAttack();
-        if (GetAttackCounter() == 3)
+    }
+
+    public void OnMeleeAnimationFinished()
+    {
+        if (CurrentState is BossMeleeState meleeState)
         {
-            ChangeState(new BossChargePrepareState(this));
-            return;
-        }
-        if (GetAttackCounter() == 6)
-        {
-            ChangeState(new BossSlamPrepareState(this));
-            return;
+            meleeState.FinishAttack();
         }
     }
     public void OnSlamHit()
     {
         Collider2D playerHit = Physics2D.OverlapCircle(
-            transform.position, slamRadius, playerLayer);
+        transform.position,
+        slamRadius,
+        playerLayer
+    );
+
         if (playerHit != null)
         {
             IDamageable damageable = playerHit.GetComponent<IDamageable>();
+
             if (damageable != null)
                 damageable.TakeDamage(slamDamage);
         }
+    }
+
+    public void OnSlamAnimationFinished()
+    {
         ResetAttackCounter();
         ChangeState(new BossChaseState(this));
     }
@@ -175,6 +183,24 @@ public class BossController : MonoBehaviour, IDamageable
 
         spriteRenderer.flipX =
             player.position.x < transform.position.x;
+    }
+
+    public void StopAgent()
+    {
+        if (agent == null || !agent.enabled)
+            return;
+
+        agent.isStopped = true;
+        agent.ResetPath();
+        agent.velocity = Vector3.zero;
+    }
+
+    public void ResumeAgent()
+    {
+        if (agent == null || !agent.enabled)
+            return;
+
+        agent.isStopped = false;
     }
 
     public void OnDeathAnimationFinished()

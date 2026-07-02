@@ -9,6 +9,7 @@ public class BossChaseState : BossState
 
     public override void Enter()
     {
+        boss.ResumeAgent();
         boss.animator?.SetBool("IsMoving", true);
     }
 
