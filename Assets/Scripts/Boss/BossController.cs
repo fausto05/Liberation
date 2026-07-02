@@ -33,6 +33,8 @@ public class BossController : MonoBehaviour, IDamageable
 
     private SpriteRenderer spriteRenderer;
 
+    private bool isDead;
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -72,10 +74,14 @@ public class BossController : MonoBehaviour, IDamageable
 
     public void TakeDamage(int damage)
     {
+        if (isDead)
+            return;
+
         currentHealth -= damage;
 
         if (currentHealth <= 0)
         {
+            isDead = true;
             ChangeState(new BossDeathState(this));
         }
     }
@@ -169,5 +175,10 @@ public class BossController : MonoBehaviour, IDamageable
 
         spriteRenderer.flipX =
             player.position.x < transform.position.x;
+    }
+
+    public void OnDeathAnimationFinished()
+    {
+        BossKilled();
     }
 }

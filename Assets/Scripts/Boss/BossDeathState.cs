@@ -10,5 +10,7 @@ public class BossDeathState : BossState
     public override void Enter()
     {
         boss.animator?.SetTrigger("Death");
+
+        
     }
 }

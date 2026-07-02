@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a11bdfd281b1310458d7689b90e928be, type: 3}
   m_Name: BossStats
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
-  moveSpeed: 2.5
+  moveSpeed: 5
   maxHealth: 50
   damage: 5
   attackRange: 1.8
