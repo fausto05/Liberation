@@ -12,20 +12,32 @@ public class BossMeleeState : BossState
     public override void Enter()
     {
         boss.agent.ResetPath();
-
         boss.LookAtPlayer();
 
-        boss.animator?.SetTrigger("Melee");
+        Attack();
     }
 
     public override void Update()
     {
         float distance = Vector2.Distance(boss.transform.position, boss.player.position);
+
         if (distance > boss.stats.attackRange)
         {
             boss.ChangeState(new BossChaseState(boss));
+            return;
+        }
+
+        boss.LookAtPlayer();
+
+        if (Time.time >= nextAttackTime)
+        {
+            Attack();
         }
     }
 
-    
+    private void Attack()
+    {
+        boss.animator?.SetTrigger("Melee");
+        nextAttackTime = Time.time + boss.stats.attackCooldown;
+    }
 }

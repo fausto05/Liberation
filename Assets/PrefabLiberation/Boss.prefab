@@ -217,7 +217,7 @@ MonoBehaviour:
   currentHealth: 0
   playerLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
 --- !u!95 &2103836555711969009
 Animator:
   serializedVersion: 7
