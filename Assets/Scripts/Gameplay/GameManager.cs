@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private GameObject missionPanel;
+    [SerializeField] private GameObject victoryPanel;
 
     private bool isPaused;
 
@@ -30,6 +31,12 @@ public class GameManager : MonoBehaviour
         gameOverPanel.SetActive(true);
     }
 
+    public void ShowVictory()
+    {
+        Time.timeScale = 0f;
+        victoryPanel.SetActive(true);
+    }
+    
     public void PauseGame()
     {
         isPaused = true;
@@ -46,8 +53,16 @@ public class GameManager : MonoBehaviour
 
     public void RetryLevel()
     {
+        SaveData data = SaveSystem.Load();
+
+        data.playerHealth = 100;
+
+        SaveSystem.Save(data);
+
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        SceneManager.LoadScene(
+            SceneManager.GetActiveScene().buildIndex);
     }
 
     public void LoadMainMenu()
@@ -59,5 +74,15 @@ public class GameManager : MonoBehaviour
     public void ToggleMissionPanel()
     {
         missionPanel.SetActive(!missionPanel.activeSelf);
+    }
+
+    private void OnEnable()
+    {
+        GameEvents.OnBossKilled += ShowVictory;
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.OnBossKilled -= ShowVictory;
     }
 }

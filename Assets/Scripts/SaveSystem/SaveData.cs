@@ -8,6 +8,8 @@ public class SaveData
 
     public int checkpointID = 0;
 
+    public int playerHealth = 100;
+
     public bool gameCompleted = false;
 
     public List<int> unlockedLore = new();

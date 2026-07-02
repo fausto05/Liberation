@@ -23,12 +23,29 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         originalColor = spriteRenderer.color;
     }
 
+    private void Start()
+    {
+        SaveData data = SaveSystem.Load();
+
+        health = data.playerHealth;
+
+        health = Mathf.Clamp(health, 1, maxHealth);
+
+        UpdateSpriteColor();
+    }
+
     public void TakeDamage(int damage)
     {
         if (isDead) return;
 
         health -= damage;
         health = Mathf.Clamp(health, 0, maxHealth);
+
+        SaveData data = SaveSystem.Load();
+
+        data.playerHealth = health;
+
+        SaveSystem.Save(data);
 
         UpdateSpriteColor();
 
@@ -63,6 +80,12 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         health += amount;
 
         health = Mathf.Clamp(health, 0, maxHealth);
+
+        SaveData data = SaveSystem.Load();
+
+        data.playerHealth = health;
+
+        SaveSystem.Save(data);
 
         UpdateSpriteColor();
     }

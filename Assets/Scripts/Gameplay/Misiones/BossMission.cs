@@ -66,8 +66,5 @@ public class BossMission : MissionBase
         GameEvents.OnBossKilled -= HandleBossKilled;
     }
 
-    public void ForceStartBoss()
-    {
-        HandleBossStart();
-    }
+    
 }

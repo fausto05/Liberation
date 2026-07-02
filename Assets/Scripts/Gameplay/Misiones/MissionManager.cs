@@ -45,10 +45,7 @@ public class MissionManager : MonoBehaviour
         {
             missions[currentMissionIndex].StartMission();
 
-            if (missions[currentMissionIndex] is BossMission bossMission)
-            {
-                bossMission.ForceStartBoss();
-            }
+            
         }
     }
 
