@@ -2,42 +2,49 @@ using UnityEngine;
 
 public class BossMeleeState : BossState
 {
-    private float nextAttackTime;
+    private bool isAttacking;
 
-    public BossMeleeState(BossController boss)
-        : base(boss)
-    {
-    }
+    public BossMeleeState(BossController boss) : base(boss) { }
 
     public override void Enter()
     {
-        boss.agent.ResetPath();
+        boss.StopAgent();
         boss.LookAtPlayer();
 
-        Attack();
+        isAttacking = true;
+        boss.animator?.SetTrigger("Melee");
     }
 
     public override void Update()
     {
-        float distance = Vector2.Distance(boss.transform.position, boss.player.position);
+        boss.StopAgent();
+        boss.LookAtPlayer();
+    }
 
-        if (distance > boss.stats.attackRange)
+    public void FinishAttack()
+    {
+        isAttacking = false;
+
+        if (boss.GetAttackCounter() == 3)
         {
-            boss.ChangeState(new BossChaseState(boss));
+            boss.ChangeState(new BossChargePrepareState(boss));
             return;
         }
 
-        boss.LookAtPlayer();
-
-        if (Time.time >= nextAttackTime)
+        if (boss.GetAttackCounter() == 6)
         {
-            Attack();
+            boss.ChangeState(new BossSlamPrepareState(boss));
+            return;
         }
-    }
 
-    private void Attack()
-    {
-        boss.animator?.SetTrigger("Melee");
-        nextAttackTime = Time.time + boss.stats.attackCooldown;
+        float distance = Vector2.Distance(
+            boss.transform.position,
+            boss.player.position
+        );
+
+        if (distance <= boss.stats.attackRange)
+            boss.ChangeState(new BossMeleeState(boss));
+        else
+            boss.ChangeState(new BossChaseState(boss));
     }
 }
