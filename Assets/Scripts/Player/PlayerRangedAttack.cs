@@ -9,6 +9,8 @@ public class PlayerRangedAttack : MonoBehaviour
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private int damage = 10;
     [SerializeField] private float minRange = 1f;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip shootSound;
 
     private PlayerMovement playerMovement;
     private Animator animator;
@@ -67,6 +69,8 @@ public class PlayerRangedAttack : MonoBehaviour
             ProjectilePool.Instance.Get(projectilePrefab, firePoint.position, direction);
 
         projectile.SetDamage(damage);
+
+        audioSource.PlayOneShot(shootSound);
     }
 
     private Vector2 GetAimDirection()

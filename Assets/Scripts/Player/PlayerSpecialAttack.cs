@@ -8,6 +8,8 @@ public class PlayerSpecialAttack : MonoBehaviour
     [SerializeField] private int specialDamage = 50;     
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private SpecialButtonUI specialButtonUI;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip shootSound;
 
     private int hitCounter = 0;
     private Animator animator;
@@ -62,6 +64,8 @@ public class PlayerSpecialAttack : MonoBehaviour
 
     private void ExecuteSpecial()
     {
+        audioSource.PlayOneShot(shootSound);
+
         Collider2D[] hits = Physics2D.OverlapCircleAll(
              transform.position,
              specialRadius,

@@ -5,6 +5,8 @@ public class RangedAttack : EnemyAttack
 {
     [SerializeField] private Transform firePoint;
     [SerializeField] private Projectile projectilePrefab;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip shootSound;
     private Animator animator;
 
     private void Awake()
@@ -33,5 +35,7 @@ public class RangedAttack : EnemyAttack
         Vector2 direction = (player.position - firePoint.position).normalized;
         Projectile projectile = ProjectilePool.Instance.Get(projectilePrefab, firePoint.position, direction);
         projectile.SetDamage(stats.damage);
+
+        audioSource.PlayOneShot(shootSound);
     }
 }

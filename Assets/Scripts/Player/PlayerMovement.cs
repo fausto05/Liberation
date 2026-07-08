@@ -3,6 +3,12 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip footstepSound;
+    [SerializeField] private float footstepInterval = 0.4f;
+
+    private float footstepTimer;
+
     public float moveSpeed = 5f;
     public Joystick joystick;
     
@@ -56,7 +62,21 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (movement != Vector2.zero)
+        {
             LastMoveDirection = movement;
+
+            footstepTimer -= Time.deltaTime;
+
+            if (footstepTimer <= 0f)
+            {
+                audioSource.PlayOneShot(footstepSound);
+                footstepTimer = footstepInterval;
+            }
+        }
+        else
+        {
+            footstepTimer = 0f;
+        }
 
         if (movement.x < 0)
             spriteRenderer.flipX = true;
