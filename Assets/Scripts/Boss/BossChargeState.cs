@@ -29,7 +29,7 @@ public class BossChargeState : BossState
 
     public override void OnWallHit()
     {
-        boss.ChangeState(new BossChaseState(boss)); 
+        boss.ChangeState(new BossStunState(boss)); 
     }
 
     public override void Exit()

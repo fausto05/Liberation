@@ -6,6 +6,10 @@ public class BossController : MonoBehaviour, IDamageable
     [Header("Stats")]
     public EnemyStats stats;
 
+    [Header("Melee Attack")]
+    public float meleeHitRange = 1.5f;
+    public Vector2 meleeHitOffset = Vector2.zero;
+
     [Header("Charge Attack")]
     public float chargeSpeed = 10f;
     public float chargeDuration = 1f;
@@ -108,10 +112,21 @@ public class BossController : MonoBehaviour, IDamageable
 
     public void OnMeleeHit()
     {
-        IDamageable damageable = player.GetComponent<IDamageable>();
+        Vector2 hitCenter = (Vector2)transform.position + meleeHitOffset;
 
-        if (damageable != null)
-            damageable.TakeDamage(stats.damage);
+        Collider2D playerHit = Physics2D.OverlapCircle(
+            hitCenter,
+            meleeHitRange,
+            playerLayer
+        );
+
+        if (playerHit != null)
+        {
+            IDamageable damageable = playerHit.GetComponent<IDamageable>();
+
+            if (damageable != null)
+                damageable.TakeDamage(stats.damage);
+        }
 
         RegisterAttack();
     }
@@ -206,5 +221,25 @@ public class BossController : MonoBehaviour, IDamageable
     public void OnDeathAnimationFinished()
     {
         BossKilled();
+    }
+
+    public void OnStunAnimationFinished()
+    {
+        
+        ChangeState(new BossChaseState(this));
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Vector2 hitCenter = (Vector2)transform.position + meleeHitOffset;
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(hitCenter, meleeHitRange);
+
+        if (stats != null)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position, stats.attackRange);
+        }
     }
 }
