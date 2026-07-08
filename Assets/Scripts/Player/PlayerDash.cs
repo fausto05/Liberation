@@ -1,11 +1,14 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
+using UnityEngine.Audio;
 
 public class PlayerDash : MonoBehaviour
 {
     [SerializeField] private float dashForce = 12f;
     [SerializeField] private float dashDuration = 0.15f;
     [SerializeField] private float dashCooldown = 1f;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip shootSound;
 
     private Rigidbody2D rb;
     private PlayerMovement playerMovement;
@@ -59,5 +62,7 @@ public class PlayerDash : MonoBehaviour
         yield return new WaitForSeconds(dashCooldown);
 
         canDash = true;
+
+        audioSource.PlayOneShot(shootSound);
     }
 }

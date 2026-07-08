@@ -18,10 +18,10 @@ GameObject:
   - component: {fileID: 8114830096232587120}
   - component: {fileID: 7552584567924089923}
   - component: {fileID: 6541293188366264170}
-  - component: {fileID: 340436309466160687}
   - component: {fileID: 7997491560031722801}
-  - component: {fileID: 8815108374017975055}
   - component: {fileID: 4022359162949758766}
+  - component: {fileID: 2045236399927820054}
+  - component: {fileID: 3440258639540195525}
   m_Layer: 3
   m_Name: "El\xEDas"
   m_TagString: Player
@@ -188,7 +188,7 @@ MonoBehaviour:
     m_ActionName: 'Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 340436309466160687}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerDash, Assembly-CSharp
         m_MethodName: TryDash
         m_Mode: 1
@@ -267,6 +267,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edbcb15c4cc215f46a8650194ec8b1af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  audioSource: {fileID: 2045236399927820054}
+  footstepSound: {fileID: 8300000, guid: f60dbe79eae65434aa90eb0ba39a4db9, type: 3}
+  footstepInterval: 0.4
   moveSpeed: 7
   joystick: {fileID: 0}
 --- !u!114 &-7110345497880831442
@@ -364,6 +367,8 @@ MonoBehaviour:
     m_Bits: 128
   damage: 3
   minRange: 3.19
+  audioSource: {fileID: 2045236399927820054}
+  shootSound: {fileID: 8300000, guid: eb67fef9f1c38ef40a4664b33cdac4eb, type: 3}
 --- !u!114 &6541293188366264170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -383,21 +388,8 @@ MonoBehaviour:
     m_Bits: 128
   damage: 5
   attackCooldown: 0.5
---- !u!114 &340436309466160687
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2241335143752637503}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65b9ed61235cbef4f97903a0cef85a4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerDash
-  dashForce: 20
-  dashDuration: 0.12
-  dashCooldown: 0.8
+  audioSource: {fileID: 2045236399927820054}
+  shootSound: {fileID: 8300000, guid: 1b81aab94f734dd4eb0d60c2e029ed56, type: 3}
 --- !u!114 &7997491560031722801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -417,23 +409,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   specialButtonUI: {fileID: 0}
-  explosionPrefab: {fileID: 5498542885821241399, guid: 382894f63a993f0488c64c7511cad0bf, type: 3}
-  explosionPoint: {fileID: 5399389017559834253}
---- !u!114 &8815108374017975055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2241335143752637503}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65b9ed61235cbef4f97903a0cef85a4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerDash
-  dashForce: 20
-  dashDuration: 0.12
-  dashCooldown: 0.8
+  audioSource: {fileID: 2045236399927820054}
+  shootSound: {fileID: 8300000, guid: 03def8c67b949da42a83a1181e9a67ab, type: 3}
 --- !u!95 &4022359162949758766
 Animator:
   serializedVersion: 7
@@ -456,6 +433,120 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!82 &2045236399927820054
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2241335143752637503}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &3440258639540195525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2241335143752637503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65b9ed61235cbef4f97903a0cef85a4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDash
+  dashForce: 12
+  dashDuration: 0.15
+  dashCooldown: 1
+  audioSource: {fileID: 0}
+  shootSound: {fileID: 0}
 --- !u!1 &3835594437105742189
 GameObject:
   m_ObjectHideFlags: 0

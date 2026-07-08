@@ -8,6 +8,8 @@ public class PlayerMeleeAttack : MonoBehaviour
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private int damage = 25;
     [SerializeField] private float attackCooldown = 0.5f;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip shootSound;
 
     public event Action OnHitConnected;
 
@@ -70,6 +72,8 @@ public class PlayerMeleeAttack : MonoBehaviour
 
         if (hitConnected)
             OnHitConnected?.Invoke();
+
+        audioSource.PlayOneShot(shootSound);
     }
 
     public bool HasEnemyInRange()
