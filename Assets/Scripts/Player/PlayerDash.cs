@@ -10,6 +10,7 @@ public class PlayerDash : MonoBehaviour
     private Rigidbody2D rb;
     private PlayerMovement playerMovement;
     private Animator animator;
+    private PlayerHealth playerHealth;
 
     private bool isDashing;
     private bool canDash = true;
@@ -21,12 +22,22 @@ public class PlayerDash : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         playerMovement = GetComponent<PlayerMovement>();
         animator = GetComponent<Animator>();
+        playerHealth = GetComponent<PlayerHealth>();
     }
 
     public void TryDash()
     {
+        if (playerHealth.IsDead)
+            return;
+
         if (!canDash || isDashing)
             return;
+        
+        playerMovement.EnableMovement();
+
+        animator.ResetTrigger("Attack");
+        animator.ResetTrigger("MeleeAttack");
+        animator.ResetTrigger("SpecialAttack");
 
         StartCoroutine(DashCoroutine());
     }

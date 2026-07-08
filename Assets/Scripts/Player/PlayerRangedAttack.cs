@@ -12,6 +12,7 @@ public class PlayerRangedAttack : MonoBehaviour
 
     private PlayerMovement playerMovement;
     private Animator animator;
+    private PlayerHealth playerHealth;
 
     private float nextFireTime;
 
@@ -19,6 +20,7 @@ public class PlayerRangedAttack : MonoBehaviour
     {
         playerMovement = GetComponent<PlayerMovement>();
         animator = GetComponent<Animator>();
+        playerHealth = GetComponent<PlayerHealth>();
     }
 
     public bool HasTargetInRange()
@@ -37,6 +39,9 @@ public class PlayerRangedAttack : MonoBehaviour
 
     public void TryFire()
     {
+        if (playerHealth.IsDead)
+            return;
+
         if (Time.time < nextFireTime)
             return;
 

@@ -12,12 +12,14 @@ public class PlayerSpecialAttack : MonoBehaviour
     private int hitCounter = 0;
     private Animator animator;
     private PlayerMovement playerMovement;
+    private PlayerHealth playerHealth;
     public bool IsReady => hitCounter >= hitsRequired;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
         playerMovement = GetComponent<PlayerMovement>();
+        playerHealth = GetComponent<PlayerHealth>();
     }
 
     public void Start()
@@ -43,6 +45,9 @@ public class PlayerSpecialAttack : MonoBehaviour
 
     public void TryUseSpecial()
     {
+        if (playerHealth.IsDead)
+            return;
+
         if (!IsReady) return;
         playerMovement.CanMove = false;
         animator.SetTrigger("SpecialAttack");

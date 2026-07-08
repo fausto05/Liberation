@@ -9,6 +9,8 @@ public class PlayerCombat : MonoBehaviour
     private PlayerMeleeAttack meleeAttack;
     private PlayerDash playerDash;
     private PlayerSpecialAttack specialAttack;
+    private PlayerHealth playerHealth;
+
 
     private void Awake()
     {
@@ -16,6 +18,7 @@ public class PlayerCombat : MonoBehaviour
         meleeAttack = GetComponent<PlayerMeleeAttack>();
         playerDash = GetComponent<PlayerDash>();
         specialAttack = GetComponent<PlayerSpecialAttack>();
+        playerHealth = GetComponent<PlayerHealth>();
     }
 
     private void OnEnable()
@@ -30,6 +33,9 @@ public class PlayerCombat : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext context)
     {
+        if (playerHealth.IsDead)
+            return;
+
         if (context.started)
         {
             rangedAttack.TryFire();
@@ -38,6 +44,9 @@ public class PlayerCombat : MonoBehaviour
 
     public void OnMeleeAttack(InputAction.CallbackContext context)
     {
+        if (playerHealth.IsDead)
+            return;
+
         if (context.started)
         {
             meleeAttack.TryAttack();
@@ -46,6 +55,9 @@ public class PlayerCombat : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
+        if (playerHealth.IsDead)
+            return;
+
         if (context.started)
         {
             playerDash.TryDash();
@@ -54,6 +66,9 @@ public class PlayerCombat : MonoBehaviour
 
     public void OnSpecialAttack(InputAction.CallbackContext context)
     {
+        if (playerHealth.IsDead)
+            return;
+
         if (context.started)
             specialAttack.TryUseSpecial();
     }

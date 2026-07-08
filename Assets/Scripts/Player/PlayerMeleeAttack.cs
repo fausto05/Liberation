@@ -13,16 +13,22 @@ public class PlayerMeleeAttack : MonoBehaviour
 
     private PlayerMovement playerMovement;
     private Animator animator;
+    private PlayerHealth playerHealth;
+
     private float nextAttackTime;
 
     private void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
         animator = GetComponent<Animator>();
+        playerHealth = GetComponent<PlayerHealth>();
     }
 
     public void TryAttack()
     {
+        if (playerHealth.IsDead)
+            return;
+
         if (Time.time < nextAttackTime)
             return;
 
