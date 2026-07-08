@@ -68815,39 +68815,6 @@ Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 3259626048581360908, guid: e0d7c8b4416637d40aa96ed4ae142ea4, type: 3}
   m_PrefabInstance: {fileID: 6425974849916484105}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1437214495 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 340436309466160687, guid: e0d7c8b4416637d40aa96ed4ae142ea4, type: 3}
-  m_PrefabInstance: {fileID: 6425974849916484105}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65b9ed61235cbef4f97903a0cef85a4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerDash
---- !u!114 &1437214496 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6541293188366264170, guid: e0d7c8b4416637d40aa96ed4ae142ea4, type: 3}
-  m_PrefabInstance: {fileID: 6425974849916484105}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b475460383136384e8a4402caf3b98fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerMeleeAttack
---- !u!114 &1437214497 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7552584567924089923, guid: e0d7c8b4416637d40aa96ed4ae142ea4, type: 3}
-  m_PrefabInstance: {fileID: 6425974849916484105}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f71b4c7ed2c701468ec00e9e576f52e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerRangedAttack
 --- !u!1 &1447879751
 GameObject:
   m_ObjectHideFlags: 0
@@ -87986,10 +87953,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -7110345497880831442, guid: e0d7c8b4416637d40aa96ed4ae142ea4, type: 3}
-      propertyPath: health
-      value: 100
-      objectReference: {fileID: 0}
     - target: {fileID: 2112331239474622019, guid: e0d7c8b4416637d40aa96ed4ae142ea4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -13.6
@@ -88038,105 +88001,12 @@ PrefabInstance:
       propertyPath: joystick
       value: 
       objectReference: {fileID: 1829482776}
-    - target: {fileID: 5879649949513535506, guid: e0d7c8b4416637d40aa96ed4ae142ea4, type: 3}
-      propertyPath: m_Color.b
-      value: 0.9415095
-      objectReference: {fileID: 0}
-    - target: {fileID: 5879649949513535506, guid: e0d7c8b4416637d40aa96ed4ae142ea4, type: 3}
-      propertyPath: m_Color.g
-      value: 0.98688656
-      objectReference: {fileID: 0}
-    - target: {fileID: 5879649949513535506, guid: e0d7c8b4416637d40aa96ed4ae142ea4, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6541293188366264170, guid: e0d7c8b4416637d40aa96ed4ae142ea4, type: 3}
-      propertyPath: attackRadius
-      value: 1.93
-      objectReference: {fileID: 0}
-    - target: {fileID: 7093748692402681797, guid: e0d7c8b4416637d40aa96ed4ae142ea4, type: 3}
-      propertyPath: m_ActionEvents.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7093748692402681797, guid: e0d7c8b4416637d40aa96ed4ae142ea4, type: 3}
-      propertyPath: m_ActionEvents.Array.data[4].m_ActionId
-      value: 18876fe1-f624-4790-b853-9fd4b695d1b7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7093748692402681797, guid: e0d7c8b4416637d40aa96ed4ae142ea4, type: 3}
-      propertyPath: m_ActionEvents.Array.data[4].m_ActionName
-      value: 'Player/MeleeAttack[/Keyboard/g]'
-      objectReference: {fileID: 0}
-    - target: {fileID: 7093748692402681797, guid: e0d7c8b4416637d40aa96ed4ae142ea4, type: 3}
-      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7093748692402681797, guid: e0d7c8b4416637d40aa96ed4ae142ea4, type: 3}
-      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7093748692402681797, guid: e0d7c8b4416637d40aa96ed4ae142ea4, type: 3}
-      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7093748692402681797, guid: e0d7c8b4416637d40aa96ed4ae142ea4, type: 3}
-      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7093748692402681797, guid: e0d7c8b4416637d40aa96ed4ae142ea4, type: 3}
-      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1437214495}
-    - target: {fileID: 7093748692402681797, guid: e0d7c8b4416637d40aa96ed4ae142ea4, type: 3}
-      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1437214497}
-    - target: {fileID: 7093748692402681797, guid: e0d7c8b4416637d40aa96ed4ae142ea4, type: 3}
-      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1437214496}
-    - target: {fileID: 7093748692402681797, guid: e0d7c8b4416637d40aa96ed4ae142ea4, type: 3}
-      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7093748692402681797, guid: e0d7c8b4416637d40aa96ed4ae142ea4, type: 3}
-      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TryDash
-      objectReference: {fileID: 0}
-    - target: {fileID: 7093748692402681797, guid: e0d7c8b4416637d40aa96ed4ae142ea4, type: 3}
-      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TryFire
-      objectReference: {fileID: 0}
-    - target: {fileID: 7093748692402681797, guid: e0d7c8b4416637d40aa96ed4ae142ea4, type: 3}
-      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TryAttack
-      objectReference: {fileID: 0}
-    - target: {fileID: 7093748692402681797, guid: e0d7c8b4416637d40aa96ed4ae142ea4, type: 3}
-      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PlayerDash, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 7093748692402681797, guid: e0d7c8b4416637d40aa96ed4ae142ea4, type: 3}
-      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PlayerRangedAttack, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 7093748692402681797, guid: e0d7c8b4416637d40aa96ed4ae142ea4, type: 3}
-      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PlayerMeleeAttack, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 7093748692402681797, guid: e0d7c8b4416637d40aa96ed4ae142ea4, type: 3}
-      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 7552584567924089923, guid: e0d7c8b4416637d40aa96ed4ae142ea4, type: 3}
-      propertyPath: minRange
-      value: 3.19
-      objectReference: {fileID: 0}
     - target: {fileID: 7997491560031722801, guid: e0d7c8b4416637d40aa96ed4ae142ea4, type: 3}
       propertyPath: specialButtonUI
       value: 
       objectReference: {fileID: 1729905909}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 5070538992450130907, guid: e0d7c8b4416637d40aa96ed4ae142ea4, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0d7c8b4416637d40aa96ed4ae142ea4, type: 3}

@@ -4,17 +4,22 @@ using UnityEngine;
 public class PlayerSpecialAttack : MonoBehaviour
 {
     [SerializeField] private int hitsRequired = 3;
-    [SerializeField] private float specialRadius = 3f;   
-    [SerializeField] private int specialDamage = 50;     
+    [SerializeField] private float specialRadius = 3f;
+    [SerializeField] private int specialDamage = 50;
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private SpecialButtonUI specialButtonUI;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip shootSound;
 
+    [Header("Visual")]
+    [SerializeField] private GameObject explosionPrefab;
+    [SerializeField] private Transform explosionPoint;
+
     private int hitCounter = 0;
     private Animator animator;
     private PlayerMovement playerMovement;
     private PlayerHealth playerHealth;
+
     public bool IsReady => hitCounter >= hitsRequired;
 
     private void Awake()
@@ -24,11 +29,10 @@ public class PlayerSpecialAttack : MonoBehaviour
         playerHealth = GetComponent<PlayerHealth>();
     }
 
-    public void Start()
+    private void Start()
     {
         specialButtonUI.UpdateCharge(0f);
     }
-
 
     public void RegisterHit()
     {
@@ -37,9 +41,7 @@ public class PlayerSpecialAttack : MonoBehaviour
 
         hitCounter++;
 
-        float progress =
-            (float)hitCounter / hitsRequired;
-
+        float progress = (float)hitCounter / hitsRequired;
         specialButtonUI.UpdateCharge(progress);
 
         Debug.Log($"Hits hacia especial: {hitCounter}/{hitsRequired}");
@@ -50,16 +52,40 @@ public class PlayerSpecialAttack : MonoBehaviour
         if (playerHealth.IsDead)
             return;
 
-        if (!IsReady) return;
+        if (!IsReady)
+            return;
+
         playerMovement.CanMove = false;
+
         animator.SetTrigger("SpecialAttack");
+
         hitCounter = 0;
         specialButtonUI.UpdateCharge(0f);
     }
 
+   
     public void OnSpecialHit()
     {
+        SpawnExplosion();
         ExecuteSpecial();
+    }
+
+    
+    public void OnSpecialFinished()
+    {
+        playerMovement.CanMove = true;
+    }
+
+    private void SpawnExplosion()
+    {
+        if (explosionPrefab == null)
+            return;
+
+        Vector3 spawnPosition = explosionPoint != null
+            ? explosionPoint.position
+            : transform.position;
+
+        Instantiate(explosionPrefab, spawnPosition, Quaternion.identity);
     }
 
     private void ExecuteSpecial()
@@ -67,20 +93,20 @@ public class PlayerSpecialAttack : MonoBehaviour
         audioSource.PlayOneShot(shootSound);
 
         Collider2D[] hits = Physics2D.OverlapCircleAll(
-             transform.position,
-             specialRadius,
-             enemyLayer
-         );
+            transform.position,
+            specialRadius,
+            enemyLayer
+        );
 
         foreach (Collider2D hit in hits)
         {
             IDamageable damageable = hit.GetComponent<IDamageable>();
+
             if (damageable != null)
                 damageable.TakeDamage(specialDamage);
         }
 
-        Debug.Log($"Especial ejecutado: {hits.Length} enemigos golpeados.");
-
+      
     }
 
     private void OnDrawGizmosSelected()
@@ -89,5 +115,5 @@ public class PlayerSpecialAttack : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, specialRadius);
     }
 
-    
+
 }
