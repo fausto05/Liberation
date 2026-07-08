@@ -8,8 +8,10 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     private Animator animator;
     private SpriteRenderer spriteRenderer;
+    private PlayerMovement playerMovement;
 
     private bool isDead = false;
+    public bool IsDead => isDead;
 
     private Color originalColor;
     private Color grayColor = new Color(0.5f, 0.5f, 0.5f, 1f);
@@ -18,8 +20,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     {
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        playerMovement = GetComponent<PlayerMovement>();
 
-        // Guarda el color naranja original que tengas puesto en el Inspector
         originalColor = spriteRenderer.color;
     }
 
@@ -52,6 +54,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         if (health <= 0)
         {
             isDead = true;
+            playerMovement.CanMove = false;
             animator.SetTrigger("Death");
         }
     }
