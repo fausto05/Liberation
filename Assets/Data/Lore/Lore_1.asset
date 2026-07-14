@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Lore_1
   m_EditorClassIdentifier: Assembly-CSharp::LoreData
   id: 1
-  title: "\xDAltima Transmisi\xF3n"
-  description: Las comunicaciones se perdieron tras el incidente...
+  title: Destello de lucidez
+  description: Al parecer hay una guerra, pero ahora recuerdo que no me trajeron
+    solo, tengo que escapar y encontrar a mis amigos.
   icon: {fileID: 0}

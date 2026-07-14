@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Lore_0
   m_EditorClassIdentifier: Assembly-CSharp::LoreData
   id: 0
-  title: "Registro de Activaci\xF3n"
-  description: La unidad fue activada para infiltrarse en las instalaciones...
+  title: "Como llegue ac\xE1?"
+  description: "No recuerdo absolutamente nada, lo poco que entiendo es que est\xE1n
+    haciendo experimentos con distintas especies de seres vivos."
   icon: {fileID: 0}
