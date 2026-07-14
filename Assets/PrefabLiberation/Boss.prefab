@@ -133,7 +133,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 5
+  m_Speed: 6
   m_Acceleration: 50
   avoidancePriority: 50
   m_AngularSpeed: 0
@@ -204,6 +204,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossController
   stats: {fileID: 11400000, guid: 2c0dabca9ec310e40852c6c98c395dee, type: 2}
+  meleeHitRange: 1.5
+  meleeHitOffset: {x: 0, y: 0}
   chargeSpeed: 10
   chargeDuration: 1
   chargePrepareTime: 1
