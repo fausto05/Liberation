@@ -16,11 +16,13 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable
     protected float lastAttackTime;
     public event System.Action OnDied;
     private GameObject prefabKey;
+    private DamageFlash damageFlash;
 
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        damageFlash = GetComponent<DamageFlash>();
 
         agent = GetComponent<NavMeshAgent>();
 
@@ -57,6 +59,8 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable
 
     public virtual void TakeDamage(int damage)
     {
+        damageFlash?.Flash();
+
         currentHealth -= damage;
 
         if (currentHealth <= 0)

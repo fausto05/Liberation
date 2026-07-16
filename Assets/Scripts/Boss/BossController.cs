@@ -35,6 +35,8 @@ public class BossController : MonoBehaviour, IDamageable
 
     public LayerMask playerLayer;
 
+    private DamageFlash damageFlash;
+
     private SpriteRenderer spriteRenderer;
 
     private bool isDead;
@@ -49,6 +51,7 @@ public class BossController : MonoBehaviour, IDamageable
         animator = GetComponent<Animator>();
 
         spriteRenderer = GetComponent<SpriteRenderer>();
+        damageFlash = GetComponent<DamageFlash>();
     }
 
     private void Start()
@@ -80,6 +83,8 @@ public class BossController : MonoBehaviour, IDamageable
     {
         if (isDead)
             return;
+
+        damageFlash?.Flash();
 
         currentHealth -= damage;
 
