@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +11,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private GameObject missionPanel;
     [SerializeField] private GameObject victoryPanel;
+    [SerializeField] private GameObject settingsPanel;
+    [SerializeField] private AudioMixer audioMixer;
+    [SerializeField] private Slider masterVolumeSlider;
 
     private bool isPaused;
 
@@ -23,6 +28,15 @@ public class GameManager : MonoBehaviour
         Application.targetFrameRate = 120;
 
         Time.timeScale = 1f;
+        
+    }
+
+    private void Start()
+    {
+        float savedVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
+
+        masterVolumeSlider.SetValueWithoutNotify(savedVolume);
+        SetMasterVolume(savedVolume);
     }
 
     public void PlayerDied()
@@ -41,6 +55,8 @@ public class GameManager : MonoBehaviour
     {
         isPaused = true;
         Time.timeScale = 0f;
+
+        settingsPanel.SetActive(false);
         pausePanel.SetActive(true);
     }
 
@@ -48,6 +64,8 @@ public class GameManager : MonoBehaviour
     {
         isPaused = false;
         Time.timeScale = 1f;
+
+        settingsPanel.SetActive(false);
         pausePanel.SetActive(false);
     }
 
@@ -71,6 +89,16 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    public void OpenSettings()
+    {
+        settingsPanel.SetActive(true);
+    }
+
+    public void CloseSettings()
+    {
+        settingsPanel.SetActive(false);
+    }
+
     public void ToggleMissionPanel()
     {
         missionPanel.SetActive(!missionPanel.activeSelf);
@@ -84,5 +112,23 @@ public class GameManager : MonoBehaviour
     private void OnDisable()
     {
         GameEvents.OnBossKilled -= ShowVictory;
+    }
+
+    public void SetMasterVolume(float volume)
+    {
+        volume = Mathf.Clamp(volume, 0.0001f, 1f);
+
+        float volumeInDecibels = Mathf.Log10(volume) * 20f;
+
+        bool changed = audioMixer.SetFloat(
+            "MasterVolume",
+            volumeInDecibels
+        );
+
+        Debug.Log(
+            $"Slider: {volume} | Decibeles: {volumeInDecibels} | Cambiado: {changed}"
+        );
+
+        PlayerPrefs.SetFloat("MasterVolume", volume);
     }
 }
