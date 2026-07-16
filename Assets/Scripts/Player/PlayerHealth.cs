@@ -65,11 +65,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     private void UpdateSpriteColor()
     {
-        // 1 = vida completa, 0 = sin vida
         float healthPercent = (float)health / maxHealth;
 
-        // Con 100 HP mantiene el color original.
-        // Con 0 HP queda gris.
         spriteRenderer.color = Color.Lerp(grayColor, originalColor, healthPercent);
     }
 
