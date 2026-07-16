@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4473186419596883117}
   - component: {fileID: 5750188467062171062}
   - component: {fileID: 2103836555711969009}
+  - component: {fileID: 2008553326839437963}
   m_Layer: 7
   m_Name: Boss
   m_TagString: Untagged
@@ -242,3 +243,17 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2008553326839437963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2442535789263561585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0e79452995b27746a8b6cbbc05490d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageFlash
+  flashColor: {r: 1, g: 0, b: 0, a: 1}
+  flashDuration: 0.1

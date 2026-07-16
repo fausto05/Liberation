@@ -9,6 +9,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     private Animator animator;
     private SpriteRenderer spriteRenderer;
     private PlayerMovement playerMovement;
+    private DamageFlash damageFlash;
 
     private bool isDead = false;
     public bool IsDead => isDead;
@@ -21,6 +22,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         playerMovement = GetComponent<PlayerMovement>();
+        damageFlash = GetComponent<DamageFlash>();
 
         originalColor = spriteRenderer.color;
     }
@@ -39,6 +41,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     public void TakeDamage(int damage)
     {
         if (isDead) return;
+
+        damageFlash?.Flash();
 
         health -= damage;
         health = Mathf.Clamp(health, 0, maxHealth);

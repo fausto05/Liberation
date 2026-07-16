@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -7512254716125508052}
   - component: {fileID: 613789724390851844}
   - component: {fileID: 8903845036410837446}
+  - component: {fileID: -505131680209292144}
   m_Layer: 7
   m_Name: MeleeEnemy
   m_TagString: Untagged
@@ -240,3 +241,17 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-505131680209292144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1042476380505274971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0e79452995b27746a8b6cbbc05490d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageFlash
+  flashColor: {r: 1, g: 0, b: 0, a: 1}
+  flashDuration: 0.1
