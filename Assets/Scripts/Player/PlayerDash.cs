@@ -49,7 +49,9 @@ public class PlayerDash : MonoBehaviour
     {
         canDash = false;
         isDashing = true;
+
         animator.SetTrigger("Dash");
+        audioSource.PlayOneShot(shootSound);
 
         Vector2 dashDirection = playerMovement.LastMoveDirection.normalized;
 
@@ -62,7 +64,5 @@ public class PlayerDash : MonoBehaviour
         yield return new WaitForSeconds(dashCooldown);
 
         canDash = true;
-
-        audioSource.PlayOneShot(shootSound);
     }
 }

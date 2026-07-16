@@ -444,7 +444,7 @@ AudioSource:
   m_GameObject: {fileID: 2241335143752637503}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 68e5eb0599d7fe445a1ce138b7a7ada6, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
@@ -547,8 +547,8 @@ MonoBehaviour:
   dashForce: 25
   dashDuration: 0.15
   dashCooldown: 1
-  audioSource: {fileID: 0}
-  shootSound: {fileID: 0}
+  audioSource: {fileID: 2045236399927820054}
+  shootSound: {fileID: 8300000, guid: 2374174c46f072d47b80a62819eb681e, type: 3}
 --- !u!1 &3835594437105742189
 GameObject:
   m_ObjectHideFlags: 0
