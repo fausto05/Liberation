@@ -5,6 +5,9 @@ public class MeleeAttack : EnemyAttack
     [Header("Audio")]
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip attackSound;
+    [SerializeField] private Transform attackPoint;
+    [SerializeField] private float attackRadius;
+    [SerializeField] private LayerMask playerLayer;
 
     private Animator animator;
 
@@ -38,15 +41,27 @@ public class MeleeAttack : EnemyAttack
 
     protected override void PerformAttack()
     {
-        IDamageable damageable = player.GetComponent<IDamageable>();
+        Collider2D hit = Physics2D.OverlapCircle(
+        attackPoint.position,
+        attackRadius,
+        playerLayer);
 
-        if (damageable != null)
+        if (hit != null)
         {
-            damageable.TakeDamage(stats.damage);
+            hit.GetComponent<IDamageable>()?.TakeDamage(stats.damage);
         }
     }
 
-    
+    private void OnDrawGizmosSelected()
+    {
+        if (attackPoint == null)
+            return;
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
+    }
+
+
     public void OnMeleeHit()
     {
         PerformAttack();

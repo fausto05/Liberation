@@ -7,12 +7,14 @@ public class DamageFlash : MonoBehaviour
     [SerializeField] private float flashDuration = 0.1f;
 
     private SpriteRenderer spriteRenderer;
+    private PlayerHealth playerHealth;
     private Coroutine flashCoroutine;
     private Color originalColor;
 
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        playerHealth = GetComponent<PlayerHealth>();
         originalColor = spriteRenderer.color;
     }
 
@@ -26,18 +28,26 @@ public class DamageFlash : MonoBehaviour
 
     private IEnumerator FlashRoutine()
     {
-        Color originalColor = spriteRenderer.color;
-
         spriteRenderer.color = flashColor;
 
         yield return new WaitForSeconds(flashDuration);
 
-        spriteRenderer.color = originalColor;
+        if (playerHealth != null)
+            spriteRenderer.color = playerHealth.CurrentHealthColor;
+        else
+            spriteRenderer.color = originalColor;
+
+        flashCoroutine = null;
     }
 
-    private void OnEnable()
+    public void ResetFlash()
     {
-        if (spriteRenderer != null)
-            spriteRenderer.color = originalColor;
+        if (flashCoroutine != null)
+        {
+            StopCoroutine(flashCoroutine);
+            flashCoroutine = null;
+        }
+
+        spriteRenderer.color = originalColor;
     }
 }
