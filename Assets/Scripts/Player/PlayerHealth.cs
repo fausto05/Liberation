@@ -5,7 +5,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 {
     public int health = 100;
     private int maxHealth = 100;
-
+    public Color CurrentHealthColor { get; private set; }
     private Animator animator;
     private SpriteRenderer spriteRenderer;
     private PlayerMovement playerMovement;
@@ -40,20 +40,19 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     public void TakeDamage(int damage)
     {
-        if (isDead) return;
-
-        damageFlash?.Flash();
+        if (isDead)
+            return;
 
         health -= damage;
         health = Mathf.Clamp(health, 0, maxHealth);
 
         SaveData data = SaveSystem.Load();
-
         data.playerHealth = health;
-
         SaveSystem.Save(data);
 
         UpdateSpriteColor();
+
+        damageFlash?.Flash();
 
         if (health <= 0)
         {
@@ -65,12 +64,16 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     private void UpdateSpriteColor()
     {
-        // 1 = vida completa, 0 = sin vida
+
         float healthPercent = (float)health / maxHealth;
 
-        // Con 100 HP mantiene el color original.
-        // Con 0 HP queda gris.
-        spriteRenderer.color = Color.Lerp(grayColor, originalColor, healthPercent);
+        CurrentHealthColor = Color.Lerp(
+            grayColor,
+            originalColor,
+            healthPercent
+        );
+
+        spriteRenderer.color = CurrentHealthColor;
     }
 
     public void OnDeathAnimationEnd()

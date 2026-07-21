@@ -11,6 +11,7 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable
     protected Rigidbody2D rb;
     protected NavMeshAgent agent;
     protected Animator animator;
+    protected SpriteRenderer spriteRenderer;
 
     protected int currentHealth;
     protected float lastAttackTime;
@@ -23,6 +24,7 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         damageFlash = GetComponent<DamageFlash>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         agent = GetComponent<NavMeshAgent>();
 
@@ -35,8 +37,9 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable
 
     protected virtual void Start()
     {
-        
+
     }
+
     public virtual void OnSpawn()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -46,13 +49,29 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable
         {
             agent.speed = stats.moveSpeed;
         }
+
+        damageFlash?.ResetFlash();
     }
 
     protected virtual void Update()
     {
         if (player == null) return;
 
+        FlipTowardsPlayer();
+
         HandleBehavior();
+    }
+
+    protected void FlipTowardsPlayer()
+    {
+        if (player.position.x > transform.position.x)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+        else
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
     }
 
     protected abstract void HandleBehavior();
@@ -68,6 +87,7 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable
             Die();
         }
     }
+
     public void SetPrefabKey(GameObject key)
     {
         prefabKey = key;
