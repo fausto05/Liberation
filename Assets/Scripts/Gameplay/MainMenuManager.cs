@@ -11,8 +11,8 @@ public class MainMenuManager : MonoBehaviour
         SaveData data = SaveSystem.Load();
 
         bool hasSave =
-            data.missionIndex > 0 ||
-            data.gameCompleted;
+            data.missionIndex > 0 &&
+            !data.gameCompleted;
 
         continueButton.SetActive(hasSave);
     }
