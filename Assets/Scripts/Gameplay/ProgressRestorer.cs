@@ -7,6 +7,7 @@ public class ProgressRestorer : MonoBehaviour
     [SerializeField] private GameObject doorPanels;
     [SerializeField] private GameObject door2;
     [SerializeField] private GameObject door3;
+    [SerializeField] private GameObject escapeDoor;
 
     [Header("Llaves")]
     [SerializeField] private GameObject key1;
@@ -56,6 +57,12 @@ public class ProgressRestorer : MonoBehaviour
 
             if (key3 != null)
                 key3.SetActive(false);
+        }
+
+        if (mission >= 10)
+        {
+            if (escapeDoor != null)
+                escapeDoor.SetActive(true);
         }
     }
 }
